@@ -509,7 +509,7 @@ More morphological transfromations and examples can be found <a href="https://do
 
 
 <figure class="video_container">
-  <iframe src="https://gitlab.com/djnighti/ucsd_robo_car_simple_ros/-/blob/master/yellow_detect_v1_6_23.mp4?expanded=true&viewer=rich" frameborder="0" allowfullscreen="true"> </iframe>
+  <iframe src="https://gitlab.com/djnighti/ucsd_robo_car_simple_ros/-/blob/a5ad0cc18063e78b26cb62ac5ff312ed3ab20679/yellow_detect_v1_6_23.mp4" frameborder="0" allowfullscreen="true"> </iframe>
 </figure>
 
 
