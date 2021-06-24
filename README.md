@@ -507,21 +507,11 @@ Answer the promt _("Create green filter? (y/n) ")_ then hit enter and begin crea
 
 More morphological transfromations and examples can be found <a href="https://docs.opencv.org/3.4/db/df6/tutorial_erosion_dilatation.html" >here</a> and  <a href="https://docs.opencv.org/master/d9/d61/tutorial_py_morphological_ops.html" >here</a>
 
-<!-- blank line -->
-<figure class="video_container">
-  <video controls="true" allowfullscreen="true" poster="filtering_process.png">
-    <source src="yellow_detect_v1_6_23.mp4" type="video/mp4">
-    <source src="yellow_detect_v1_6_23.ogg" type="video/ogg">
-    <source src="yellow_detect_v1_6_23.webm" type="video/webm">
-  </video>
-</figure>
-<!-- blank line -->
 
-<!-- blank line -->
 <figure class="video_container">
-  <iframe src="https://drive.google.com/file/d/1sLj0771ExObNISS8vMS_b5Qkhl8aIdcv/view?usp=sharing" frameborder="0" allowfullscreen="true"> </iframe>
+  <iframe src="https://drive.google.com/drive/folders/1EmWWoXNov-X0Mhd8tjfThVnchyqKtuNA" frameborder="0" allowfullscreen="true"> </iframe>
 </figure>
-<!-- blank line -->
+
 
 
 #### **Decoder** 
