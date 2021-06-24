@@ -517,6 +517,12 @@ More morphological transfromations and examples can be found <a href="https://do
 </figure>
 <!-- blank line -->
 
+<!-- blank line -->
+<figure class="video_container">
+  <iframe src="https://drive.google.com/file/d/1sLj0771ExObNISS8vMS_b5Qkhl8aIdcv/view?usp=sharing" frameborder="0" allowfullscreen="true"> </iframe>
+</figure>
+<!-- blank line -->
+
 
 #### **Decoder** 
 
