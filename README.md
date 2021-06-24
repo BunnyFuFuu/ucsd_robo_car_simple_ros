@@ -1,7 +1,14 @@
 # ucsd_robo_car_simple_ros
 [![Watch the video](https://img.youtube.com/vi/T-D1KVIuvjA/maxresdefault.jpg)](https://youtu.be/T-D1KVIuvjA)
 [![Watch the video](https://i.imgur.com/vKb2F1B.png)](https://youtu.be/T-D1KVIuvjA)
-![Demo]https://youtu.be/T-D1KVIuvjA)
+
+
+<figure class="video_container">
+  <iframe src="https://www.youtube.com/embed/enMumwvLAug" frameborder="0" allowfullscreen="true"> </iframe>
+</figure>
+
+<iframe src="https://www.youtube.com/embed/enMumwvLAug" frameborder="0" allowfullscreen="true"> </iframe>
+
 A simple ROS package using OpenCV on a 1/10 RC car chassis with ackerman steering that can follow a yellow line or stay between two white lines.
 
 <div>
