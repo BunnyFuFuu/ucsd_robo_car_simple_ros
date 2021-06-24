@@ -509,7 +509,7 @@ More morphological transfromations and examples can be found <a href="https://do
 
 <!-- blank line -->
 <figure class="video_container">
-  <video controls="true" allowfullscreen="true" poster="path/to/poster_image.png">
+  <video controls="true" allowfullscreen="true" poster="yellow_detect_v1_6_23.mp4">
     <source src="yellow_detect_v1_6_23.mp4" type="video/mp4">
   </video>
 </figure>
