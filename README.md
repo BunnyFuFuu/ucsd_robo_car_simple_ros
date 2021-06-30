@@ -11,8 +11,6 @@
 <figure class="video_container">
   <iframe src="https://youtu.be/T-D1KVIuvjA" frameborder="0" allowfullscreen="true"> </iframe>
 </figure>
-<!-- blank line -->
-[![Watch the video](https://gitlab.com/djnighti/ucsd_robo_car_simple_ros/-/blob/master/yellow_detect_v1_6_23.mp4?expanded=true&viewer=rich)
 
 A simple ROS package using OpenCV on a 1/10 RC car chassis with ackerman steering that can follow a yellow line or stay between two white lines.
 
@@ -53,6 +51,13 @@ A simple ROS package using OpenCV on a 1/10 RC car chassis with ackerman steerin
     - [Error With CV_Bridge Conversion From Image Message To OpenCV Image](#error-with-cv_bridge-conversion-from-image-message-to-opencv-image)
     - [Throttle Not working](#throttle-not-working)
     - [ROS Version Is Not Compatible with Python3](#ros-version-is-not-compatible-with-python3)
+  - [**Demonstration videos**](#demonstration-videos)
+    - [Lane detection example with yellow filter](#lane-detection-example-with-yellow-filter)
+    - [Blue color detection](#blue-color-detection)
+    - [Yellow color detection and line width specification](#yellow-color-detection-and-line-width-specification)
+    - [Throttle and steering](#throttle-and-steering)
+    - [Manipulating image dimensions](#manipulating-image-dimensions)
+
 ## Dependencies
 
 ### [cv2](https://opencv.org/)
@@ -521,13 +526,6 @@ Answer the promt _("Create green filter? (y/n) ")_ then hit enter and begin crea
 
 More morphological transfromations and examples can be found <a href="https://docs.opencv.org/3.4/db/df6/tutorial_erosion_dilatation.html" >here</a> and  <a href="https://docs.opencv.org/master/d9/d61/tutorial_py_morphological_ops.html" >here</a>
 
-
-<figure class="video_container">
-  <iframe src="https://gitlab.com/djnighti/ucsd_robo_car_simple_ros/-/blob/a5ad0cc18063e78b26cb62ac5ff312ed3ab20679/yellow_detect_v1_6_23.mp4" frameborder="0" allowfullscreen="true"> </iframe>
-</figure>
-
-
-
 #### **Decoder** 
 
 Associated file: decoder.py
@@ -556,3 +554,24 @@ If your're having issues using python3, then there is a chance that the virtual 
 More info found 
 <a href="https://medium.com/@beta_b0t/how-to-setup-ros-with-python-3-44a69ca36674" >here</a>
 
+## **Demonstration videos** 
+
+#### Lane detection example with yellow filter
+
+[![lane detection example with yellow filter](https://j.gifs.com/6WRqXN.gif)](https://youtu.be/f4VrncQ7HU)
+
+#### Blue color detection
+
+[![Blue color detection](https://j.gifs.com/PjZoj6.gif)](https://youtu.be/c9rkRHGGea0)
+
+#### Yellow color detection and line width specification
+
+[![Yellow color detection and line width specification](https://j.gifs.com/BrLJro.gif)](https://youtu.be/l2Ngtd461DY)
+
+#### Throttle and steering
+
+[![Throttle and steering](https://j.gifs.com/362n6p.gif)](https://youtu.be/lhYzs5v6jtI)
+
+#### Manipulating image dimensions
+
+[![Manipulating image dimensions](https://j.gifs.com/lR5oR1.gif)](https://youtu.be/_DhG6dduYPs)
