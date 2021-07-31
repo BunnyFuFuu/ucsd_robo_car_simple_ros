@@ -8,7 +8,7 @@ STEERING_TOPIC_NAME = '/steering'
 kit = ServoKit(channels=16)
 '''
     more documentation at https://learn.adafruit.com/16-channel-pwm-servo-driver/python-circuitpython
-    throttle servo is on channel 1 
+    steering servo is on channel 1 
 '''
 
 
