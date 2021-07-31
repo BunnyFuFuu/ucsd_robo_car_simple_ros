@@ -8,7 +8,7 @@ THROTTLE_TOPIC_NAME = '/throttle'
 kit = ServoKit(channels=16)
 '''
     more documentation at https://learn.adafruit.com/16-channel-pwm-servo-driver/python-circuitpython
-    throttle servo is on channel 0 
+    throttle servo is on channel 2 
 '''
 # throttle_scale = 0.03  # scale down sensitive throttle
 throttle_scale = 1.0  # scale down sensitive throttle
@@ -24,7 +24,7 @@ def callback(data):
     # input_throttle = data.data
     # normalized_throttle = output_start + (input_throttle - input_start) * ((output_end - output_start) / (input_end - input_start))
     normalized_throttle = data.data
-    kit.continuous_servo[0].throttle = normalized_throttle * throttle_scale
+    kit.continuous_servo[2].throttle = normalized_throttle * throttle_scale
 
 
 def listener():
