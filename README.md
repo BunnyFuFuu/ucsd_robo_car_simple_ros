@@ -61,7 +61,7 @@ A simple ROS package using OpenCV on a 1/10 RC car chassis with ackerman steerin
 
 ## Dependencies
 
-<div>
+</div>
 
 ### [cv2](https://opencv.org/)
 
