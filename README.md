@@ -508,8 +508,8 @@ If while running [ros_racer_calibration_node](#ros_racer_calibration_node) or [r
 1. Make sure battery is plugged in
 1. Make sure battery has a charge
 1. Make sure servo and ESC wires are plugged into the pwm board into the correct channels correctly
-1. Check to see if the servo topic is publishing data 
-1. Verify that the throttle values found in [ros_racer_calibration_node](#ros_racer_calibration_node) were loaded properly when running  [aws_rosracer.launch](#aws_rosracerlaunch) (Values will be printed to the terminal first when running the launch file) 
+1. Check to see if the steering and throttle topics are publishing data `rostopic echo /steering` and `rostopic echo /throttle`
+1. Verify that the throttle values found in [ros_racer_calibration_node](#ros_racer_calibration_node) were loaded properly when running  [ros racer launch](#ros racer launch) (Values will be printed to the terminal first when running the launch file) 
 1. Restart ROS core 
 1. Reboot if none of the above worked and try again `sudo reboot now`
 
