@@ -8,7 +8,7 @@ THROTTLE_TOPIC_NAME = '/throttle'
 kit = ServoKit(channels=16)
 '''
     more documentation at https://learn.adafruit.com/16-channel-pwm-servo-driver/python-circuitpython
-    throttle servo is on channel 2 
+    throttle servo is on channel 2
 '''
 
 def callback(data):
