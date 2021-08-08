@@ -390,7 +390,7 @@ Calibrate the camera, throttle and steering in this node by using the sliders to
 | Throttle_mode 2 | error_throttle_mode(find value for car to move when there is **some error** in steering)| 
 | Throttle_value | Specify the throttle value to be set in each of the throttle modes| 
 
-More morphological transfromations and examples can be found <a href="https://docs.opencv.org/3.4/db/df6/tutorial_erosion_dilatation.html" >here</a> and  <a href="https://docs.opencv.org/master/d9/d61/tutorial_py_morphological_ops.html" >here</a>
+More morphological transfromations and examples can be found <a href="https://docs.opencv.org/3.4/db/df6/tutorial_erosion_dilatation.html" >here</a> and <a href="https://docs.opencv.org/master/d9/d61/tutorial_py_morphological_ops.html" >here</a>
 
 These values are saved automatically to a configuration file, so just press control-c when the deepracer is calibrated.
 
@@ -468,7 +468,7 @@ This file will launch [throttle and steering launch](#throttle-and-steering-laun
 
 #### ROS Guide Book
 
-[ROS Guide Book](#ros-guide-book)
+For help with using ROS in the terminal and in console scripts, check out this google doc <a href="https://docs.google.com/document/d/1u7XS7B-Rl_emK3kVKEfc0MxHtwXGYHf5HfLlnX8Ydiw/edit?usp=sharing" >here</a> to see tables of ROS commands and plenty of examples of using ROS in console scripts.
 
 #### **Run Indvidual Programs**
 
