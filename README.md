@@ -201,7 +201,7 @@ more details <a href="https://learn.adafruit.com/16-channel-pwm-servo-driver/pyt
 Instructions found <a href="https://docs.google.com/document/d/1LxcTvSTRHVxSnv3x_cJ667loWgzCt7ikTJk51dKAFSs/edit?usp=sharing" >here</a>
 
 
-### **6. Accessing this repository**
+### **6. Access this repository**
 
   **a. Generate an SSH key and provide it to Gitlab for access to repositories**
 
