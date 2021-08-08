@@ -302,7 +302,7 @@ Instructions found <a href="https://docs.google.com/document/d/1LxcTvSTRHVxSnv3x
 
 </div>
 
-#### **throttle_client**
+### **throttle_client**
 
 Associated file: **throttle_client.py**
 
@@ -312,24 +312,24 @@ module on **channel 2** for sending signals to the hardware.
 
 This node is also responsible for reading and setting the throttle calibration values.
 
-#### **steering_client**
+### **steering_client**
 
-Associated file: steering_client.py
+Associated file: **steering_client.py**
 
 Similar to [**throttle_client**](#throttle_client), this node subscribes to the [**steering**](#Topics)
 topic and passes the signals to the hardware. The steering servo is on **channel 1**.
 
 Plenty of information on how to use the adafruit_servokit libraries can be found <a href="https://learn.adafruit.com/16-channel-pwm-servo-driver/python-circuitpython" >here</a> and <a href="https://github.com/adafruit/Adafruit_CircuitPython_ServoKit" >here</a> 
 
-#### **camera_server**
+### **camera_server**
 
-Associated file: camera_server.py
+Associated file: **camera_server.py**
 
 This node simply reads from the camera with cv2's interface and publishes the image to the
 [**camera_rgb**](#Topics) topic. Before publishing, the image is reformatted from the cv image format
 so it can be passed through the ROS topic message structure.
 
-#### **lane_detection_node**
+### **lane_detection_node**
 
 Associated file: **lane_detection.py**
 
@@ -343,13 +343,13 @@ The color scheme is defined as follows:
 
 Below show the image post processing techniques, cv2 methods and the logic applied respectively.
 
-<div>
+<div align="center">
   <img src="filtering_process.png">
   <img src="applying_methods.png">
   <img src="applying_logic.png">
 </div>
 
-#### **lane_guidance_node**
+### **lane_guidance_node**
 
 Associated file: **lane_guidance.py**
 
@@ -360,7 +360,7 @@ Steering is based on a proportional controller implemented by the calculating th
 
 Gains can be tweaked in the lane_guidance.py script.
 
-#### **ros_racer_calibration_node**
+### **ros_racer_calibration_node**
 
 Associated file: **ros_racer_calibration_node.py**
 
@@ -370,12 +370,22 @@ Calibrate the camera, throttle and steering in this node by using the sliders to
 - throttle values for both the optimal condtion (error = 0) and the non optimal condtion (error !=0) AKA go fast when error=0 and go slow if error !=0
 - steering sensitivty change the Kp value to adjust the steering sensitivty (as Kp --> 1 steering more responsive, as Kp --> 0  steering less responsive) 
 
-| Property       | Info                                                       |
-| ---------- | --------------------- |
-| Hue_low, Hue_high | Setting low and high values for Hue  | 
-| Saturation_low, Saturation_high | Setting low and high values for Saturation | 
-| Value_low, Value_high | Setting low and high values for Value | 
-| Width_min, Width_max | Specify the width range of the line to be detected  | 
+| Property   | Info |
+| ----------  | --------------------- |
+| lowH, highH | Setting low and high values for Hue  | 
+| lowS, highS | Setting low and high values for Saturation | 
+| lowV, highV | Setting low and high values for Value | 
+| Inverted_filter | Specify to create an inverted color tracker | 
+| min_width, max_width | Specify the width range of the line to be detected  | 
+| number_of_lines | Specify the number of lines to be detected  | 
+| error_threshold | Specify the acceptable error the robot will consider as approximately "no error" | 
+| frame_width | Specify the width of image frame (horizontal cropping) | 
+| rows_to_watch | Specify the number of rows (in pixels) to watch (vertical cropping) | 
+| rows_offset | Specify the offset of the rows to watch (vertical pan) | 
+| Steering_sensitivity | Specify the proportional gain of the steering | 
+| Steering_value | Specify the steering value | 
+| Throttle_mode | Toggle this slider at the end of calibration to the following 3 modes. Mode 0:  zero_throttle_mode (find value where car does not move), Mode 1:  zero_error_throttle_mode (find value for car to move when there is **no error** in steering), Mode 2:  error_throttle_mode(find value for car to move when there is **some error** in steering)| 
+| Throttle_value | Specify the throttle value to be set in each of the throttle modes| 
 
 More morphological transfromations and examples can be found <a href="https://docs.opencv.org/3.4/db/df6/tutorial_erosion_dilatation.html" >here</a> and  <a href="https://docs.opencv.org/master/d9/d61/tutorial_py_morphological_ops.html" >here</a>
 
@@ -387,25 +397,25 @@ These values are saved automatically to a configuration file, so just press cont
 
 </div>
 
-#### **throttle** 
+### **throttle** 
 | Name       | Msg Type              | Info                                                       |
 | ---------- | --------------------- | ---------------------------------------------------------- |
-| throttle   | std_msgs.msg.Float32  | Float value from -1 to 1 for controlling throttle          |
+| /throttle   | std_msgs.msg.Float32  | Float value from -1 to 1 for controlling throttle          |
 
 #### **steering**
 | Name       | Msg Type              | Info                                                       |
 | ---------- | --------------------- | ---------------------------------------------------------- |
-| steering   | std_msgs.msg.Float32  | Float value from -1 to 1 for controlling steering          |
+| /steering   | std_msgs.msg.Float32  | Float value from -1 to 1 for controlling steering          |
 
 #### **camera_rgb**
 | Name       | Msg Type              | Info                                                       |
 | ---------- | --------------------- | ---------------------------------------------------------- |
-| camera_rgb | sensor_msgs.msg.Image | Image last read from USB camera image                      |
+| /camera_rgb | sensor_msgs.msg.Image | Image last read from USB camera image                      |
 
 #### **centroid**
 | Name       | Msg Type              | Info                                                       |
 | ---------- | --------------------- | ---------------------------------------------------------- |
-| centroid   | std_msgs.msg.Float32  | Float value for that represents the error of the x coordinate of centroid in camera image space|
+| /centroid   | std_msgs.msg.Float32  | Float value for that represents the error of the x coordinate of centroid in camera image space|
 
 <div align="center">
 
