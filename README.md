@@ -543,6 +543,20 @@ More info found
 
 <div align="center">
 
+#### Number of lines to detect
+[![Number of lines to detect](https://j.gifs.com/qQ7Lvk.gif)](https://youtu.be/5AVL68BTD0U)
+
+</div>
+
+<div align="center">
+
+#### Error threshold
+[![Error threshold](https://j.gifs.com/k28Xmv.gif)](https://youtu.be/ied1TDvpDK4)
+
+</div>
+
+<div align="center">
+
 #### Blue color detection
 
 [![Blue color detection](https://j.gifs.com/PjZoj6.gif)](https://youtu.be/c9rkRHGGea0)
