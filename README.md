@@ -23,9 +23,13 @@ A simple ROS package using OpenCV on a 1/10 RC car chassis with ackerman steerin
     - [adafruit_servokit](#adafruit_servokit)
     - [cv_bridge](#cv_bridge)
   - [**Environment Configuration**](#environment-configuration)
-    - [Create a gitlab account](#1-create-a-gitlab-account)
-    - [Access this repository](#2-access-this-repository)
-    - [Enable X11 forwarding](#enable-x11-forwarding)
+    - [openCV Setup](#1-opencv-setup)
+    - [Virtual Environment Setup](#2-virtual-environment-setup)
+    - [Upgrading](#3-upgrading)
+    - [Install Adafruit Library](#4-install-adafruit-library)
+    - [Install ROS Melodic](#5-install-ros-melodic)
+    - [Access this repository](#6-access-this-repository)
+    - [Enable X11 forwarding](#7-enable-x11-forwarding)
   - [**Work Flow To Use This Repository**](#work-flow-to-use-this-repository)
   - [**Nodes**](#nodes)
     - [throttle_client](#throttle_client)
@@ -197,7 +201,7 @@ more details <a href="https://learn.adafruit.com/16-channel-pwm-servo-driver/pyt
 Instructions found <a href="https://docs.google.com/document/d/1LxcTvSTRHVxSnv3x_cJ667loWgzCt7ikTJk51dKAFSs/edit?usp=sharing" >here</a>
 
 
-### *6. Accessing this repository**
+### **6. Accessing this repository**
 
   **a. Generate an SSH key and provide it to Gitlab for access to repositories**
 
