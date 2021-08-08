@@ -384,6 +384,7 @@ Calibrate the camera, throttle and steering in this node by using the sliders to
 | rows_offset | Specify the offset of the rows to watch (vertical pan) | 
 | Steering_sensitivity | Specify the proportional gain of the steering | 
 | Steering_value | Specify the steering value | 
+
 | Throttle_mode | Toggle this slider at the end of calibration to the following 3 modes. |
 | ----------  | --------------------- |
 | Throttle_mode 0 | zero_throttle_mode (find value where car does not move) 
