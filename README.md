@@ -384,10 +384,10 @@ Calibrate the camera, throttle and steering in this node by using the sliders to
 | rows_offset | Specify the offset of the rows to watch (vertical pan) | 
 | Steering_sensitivity | Specify the proportional gain of the steering | 
 | Steering_value | Specify the steering value | 
-| Throttle_mode | Toggle this slider at the end of calibration to the following 3 modes. 
-Mode 0:  zero_throttle_mode (find value where car does not move) 
-Mode 1:  zero_error_throttle_mode (find value for car to move when there is **no error** in steering)
-Mode 2:  error_throttle_mode(find value for car to move when there is **some error** in steering)| 
+| Throttle_mode | Toggle this slider at the end of calibration to the following 3 modes. |
+| Throttle_mode 0 | zero_throttle_mode (find value where car does not move) 
+| Throttle_mode 1 | zero_error_throttle_mode (find value for car to move when there is **no error** in steering)
+| Throttle_mode 2 | error_throttle_mode(find value for car to move when there is **some error** in steering)| 
 | Throttle_value | Specify the throttle value to be set in each of the throttle modes| 
 
 More morphological transfromations and examples can be found <a href="https://docs.opencv.org/3.4/db/df6/tutorial_erosion_dilatation.html" >here</a> and  <a href="https://docs.opencv.org/master/d9/d61/tutorial_py_morphological_ops.html" >here</a>
