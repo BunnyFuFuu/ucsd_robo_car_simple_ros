@@ -1,6 +1,6 @@
 # ucsd_robo_car_simple_ros
 
-<img src="ros_ucsd_logo.png">
+<img src="ucsd_ros_logo.png">
 
 A simple ROS package using OpenCV on a 1/10 RC car chassis with ackerman steering that can detect and track road lines or lanes in a driver-less mode. 
 
