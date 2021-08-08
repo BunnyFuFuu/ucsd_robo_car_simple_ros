@@ -12,7 +12,7 @@
   <iframe src="https://youtu.be/T-D1KVIuvjA" frameborder="0" allowfullscreen="true"> </iframe>
 </figure>
 
-A simple ROS package using OpenCV on a 1/10 RC car chassis with ackerman steering that can follow a yellow line or stay between two white lines.
+A simple ROS package using OpenCV on a 1/10 RC car chassis with ackerman steering that can detect and track road lines or lanes in a driver-less mode. 
 
 <div>
 
@@ -28,10 +28,9 @@ A simple ROS package using OpenCV on a 1/10 RC car chassis with ackerman steerin
     - [throttle_client](#throttle_client)
     - [steering_client](#steering_client)
     - [camera_server](#camera_server)
-    - [line_detection_node](#line_detection_node)
     - [lane_detection_node](#lane_detection_node)
     - [lane_guidance_node](#lane_guidance_node)
-    - [camera_values_node](#camera_values_node)
+    - [ros_racer_calibration_node](#ros_racer_calibration_node)
   - [**Topics**](#topics)
     - [steering](#steering)
     - [throttle](#throttle)
@@ -39,17 +38,17 @@ A simple ROS package using OpenCV on a 1/10 RC car chassis with ackerman steerin
     - [centroid](#centroid)
   - [**Launch**](#launch)
     - [throttle and steering launch](#throttle-and-steering-launch)
-    - [line detection launch](#line-detection-launch)
     - [lane detection launch](#lane-detection-launch)
-    - [ucsd_robo_car_calibration_launch](#ucsd_robo_car-calibration-launch)
+    - [ros racer calibration launch](#ros-racer-calibration-launch)
+    - [ros racer launch](#ros-racer-launch)
   - [**Tools**](#tools)
+    - [ROS Guide Book](#ros-guide-book)
     - [Run Indvidual Programs](#run-indvidual-programs)
-    - [Throttle and Steering Calibration](#throttle-and-steering-calibration)
-    - [Find Camera Parameters](#find-camera-parameters)
     - [Decoder](#decoder)
   - [**Issues and Fixes**](#issues-and-fixes)
+    - [Camera not working](#camera-not-working)
+    - [Throttle and steering not working](#throttle-and-steering-not-working)
     - [Error With CV_Bridge Conversion From Image Message To OpenCV Image](#error-with-cv_bridge-conversion-from-image-message-to-opencv-image)
-    - [Throttle Not working](#throttle-not-working)
     - [ROS Version Is Not Compatible with Python3](#ros-version-is-not-compatible-with-python3)
   - [**Demonstration videos**](#demonstration-videos)
     - [Lane detection example with yellow filter](#lane-detection-example-with-yellow-filter)
@@ -74,13 +73,11 @@ more details <a href="https://learn.adafruit.com/16-channel-pwm-servo-driver/pyt
 
 CV Bridge provides functions to easily convert (encode/decode) in between ROS image message types to OpenCV-workable Numpy arrays.
 
+<div align="center">
+
 ## Environment Configuration
 
-`sudo apt-get update`
-
-`sudo apt-get upgrade`
-
-
+</div>
 
 **1. openCV Setup**
 
@@ -115,11 +112,9 @@ more details <a href="https://pypi.org/project/opencv-python/" >here</a>
 
 _**if you want to compile from source follow steps below**_
 
-**IF NEEDED**
+****
 
-  **d. build instructions** <a href="https://qengineering.eu/install-opencv-4.5-on-jetson-nano.html" >here</a>
-
-
+  **d. (OPTIONAL) build instructions for openCV** <a href="https://qengineering.eu/install-opencv-4.5-on-jetson-nano.html" >here</a>
 
 **2. Virtual Environment Setup**
 
@@ -161,13 +156,15 @@ _**if you want to compile from source follow steps below**_
 
    `source env/bin/activate`
 
+<div align="center">
+
    **NOTE**
-   _**WHILE IN VIRTUAL ENVIRONMENT, DO NOT USE "sudo" 
-   TO INSTALL PIP PACKAGES, THESE WILL INSTALL TO YOUR 
-   LOCAL MACHINE INSTEAD OF VIRTUAL ENVIRONMENT!!!**_
+   _**WHILE IN VIRTUAL ENVIRONMENT, DO NOT USE "sudo"  TO INSTALL PIP PACKAGES, THESE WILL INSTALL TO ROOT INSTEAD OF VIRTUAL ENVIRONMENT**_
 
    more details <a href="https://realpython.com/python-virtual-environments-a-primer/" >here</a>
    and <a href="https://bic-berkeley.github.io/psych-214-fall-2016/using_pythonpath.html" >here</a>
+
+</div>
 
 **3. Upgrading**
 
@@ -178,8 +175,6 @@ _**if you want to compile from source follow steps below**_
 `pip install --upgrade pip`
 
 `pip install --upgrade pyinstaller`
-
-
 
 **4. Install Adafruit Library**
 
@@ -192,8 +187,7 @@ more details <a href="https://learn.adafruit.com/16-channel-pwm-servo-driver/pyt
 **5. Install ROS Melodic**
 Instructions found <a href="https://docs.google.com/document/d/1LxcTvSTRHVxSnv3x_cJ667loWgzCt7ikTJk51dKAFSs/edit?usp=sharing" >here</a>
 
-
-**6. Access this repository**
+**6. Accessing this repository**
 
   **a. Generate an SSH key and provide it to Gitlab for access to repositories**
 
@@ -277,63 +271,42 @@ Instructions found <a href="https://docs.google.com/document/d/1LxcTvSTRHVxSnv3x
 
    `chmod -R 777 .`
 
+
+<div align="center">
+
 ## **Work Flow To Use This Repository**
+
+</div>
 
 1. **ALWAYS RUN ROSCORE IN A TERMINAL ON EVERY BOOT UP OF THE JETSON**
 
 `roscore`
 
-2. Calibrate camera using the [**Find Camera Parameters**](#find-camera-parameters) script. These values are saved automatically (see [**Find Camera Parameters**](#find-camera-parameters) for details) to a configuration file, so just press control-c when the camera is calibrated. Below are the commands to get the camera running and begin the calibration process.
+2. Calibrate the camera, throttle and steering values using the [ros_racer_calibration_node](#ros_racer_calibration_node)
 
+`roslaunch ucsd_robo_car_simple_ros ros_racer_calibration_launch.launch`
 
-`rosrun ucsd_robo_car_simple_ros camera_server.py`
+3. Launch [ros racer launch](#ros racer launch)
 
-`rosrun ucsd_robo_car_simple_ros camera_values_ros.py`
+`roslaunch ucsd_robo_car_simple_ros ros_racer_launch.launch`
 
+4. Tune parameters in step 2 until desired behavior is achieved
 
-3. Calibrate throttle and steering using instructions in [Throttle and Steering Calibration](#throttle-and-steering-calibration). Find a throttle value for both the optimal condtion (error = 0) and the non optimal condtion (error !=0) AKA go fast when error=0 and go slow if error !=0 (see [**lane_guidance_node**](#lane_guidance_node) for details). Once both of these values are found, enter the values manually in **lane_guidance.py**
-For steering, change the Kp value to adjust the steering sensitivty (as Kp --> 1 steering more responsive, as Kp --> 0  steering less responsive) Below are the commands for calibrating throttle and steering as well as editing **lane_guidance.py**
-
-`rostopic pub -r 15 /steering [TAB][TAB]`
-
-`rostopic pub -r 15 /throttle [TAB][TAB]`
-
-`roscd ucsd_robo_car_simple_ros/scripts`
-
-`nano lane_guidance.py`
-
-enter the upper and lower bounds for throttle on lines 26 and 29 and the Kp for steering on line 17
-
-Then press 
-   
-   **ctrl-x** 
-   
-   Then press 
-   
-   **y**  (yes) 
-   
-   and then press 
-   
-   **enter** 
-   
-   to save an quit
-
-
-4. Experiment which algorithim is better; [**line_detection_node**](#line_detection_node) or [**lane_detection_node**](#lane_detection_node)
+<div align="center">
 
 ## Nodes
 
+</div>
+
 #### **throttle_client**
 
-Associated file: throttle_client.py
+Associated file: **throttle_client.py**
 
 This node subscribes to the [**throttle**](#Topics) topic. We use subscriber callback function
 to validate and normalize throttle value, and then use the [**adafruit_servokit**](#adafruit_servokit)
-module on **channel 0** for sending signals to the hardware.
+module on **channel 2** for sending signals to the hardware.
 
 This node is also responsible for reading and setting the throttle calibration values.
-
-See [**throttle and steering calibration**](#throttle_and_steering_calibration) for calibration
 
 #### **steering_client**
 
@@ -342,10 +315,7 @@ Associated file: steering_client.py
 Similar to [**throttle_client**](#throttle_client), this node subscribes to the [**steering**](#Topics)
 topic and passes the signals to the hardware. The steering servo is on **channel 1**.
 
-
 Plenty of information on how to use the adafruit_servokit libraries can be found <a href="https://learn.adafruit.com/16-channel-pwm-servo-driver/python-circuitpython" >here</a> and <a href="https://github.com/adafruit/Adafruit_CircuitPython_ServoKit" >here</a> 
-
-See [**throttle and steering calibration**](#throttle_and_steering_calibration) for calibration
 
 #### **camera_server**
 
@@ -355,32 +325,17 @@ This node simply reads from the camera with cv2's interface and publishes the im
 [**camera_rgb**](#Topics) topic. Before publishing, the image is reformatted from the cv image format
 so it can be passed through the ROS topic message structure.
 
-
-#### **line_detection_node**
-
-Associated file: line_detection.py
-
-This node subscribes from [**camera_rgb**](#Topics) topic and uses opencv to identify line
-information from the image, and publish the information of the middle point of 
-a single line to the [**centroid**](#Topics) topic. The color of line is chosen by the user
-and set by using [**find_camera_values**](#tools)
-
-Throttle is based on whether or not a centroid exists - car goes faster when centroid is present and slows down when there is none.
-
-Steering is based on a proportional controller implemented by its error function. Gain (Kp) can be tuned in this script.
-
-
-**Note: The cv windows have been commented out so that no errors occur when running in headless mode. For debugging, its suggested to uncomment these lines.**
-
 #### **lane_detection_node**
 
-Associated file: lane_detection.py
+Associated file: **lane_detection.py**
 
-This node has the same functionality as [**line_detection_node**](#line_detection_node) however, now the ability to identify more than one line has been included. It is possible to identify the outside lanes as well as the yellow dashed lines if a green mask is applied which can easily be made by using [**find_camera_values**](#find_camera_values). 
+This node subscribes from the [**camera_rgb**](#Topics) topic and uses opencv to identify line
+information from the image, and publish the information of the lines centroid to the [**centroid**](#centroid). 
 
-**Note 1: The bounding areas found in the image can be calibrated visually using** [**Find Camera Parameters**](#find-camera-parameters)
+The color scheme is defined as follows:
 
-**Note 2: The cv windows have been commented out so that no errors occur when running in headless mode. For debugging, its suggested to uncomment these lines.**
+- 2 contours : green bounding boxes and a blue average centroid
+- 1 contour : green bounding box with a single red centroid
 
 Below show the image post processing techniques, cv2 methods and the logic applied respectively.
 
@@ -390,38 +345,48 @@ Below show the image post processing techniques, cv2 methods and the logic appli
   <img src="applying_logic.png">
 </div>
 
-For [**lane_detection_node**](#lane_detection_node), the logic above shows that the bounding boxes and centroids change color based on the number of contours found in the image. 
-
-ie. 
-
-- 2 contours : green bounding boxes each with their own green centroid and a blue average centroid
-- 1 contour : green bounding box with a single red centroid
-
 #### **lane_guidance_node**
 
-Associated file: lane_guidance.py
+Associated file: **lane_guidance.py**
 
 This node subscribes to the centroid topic, calculates the throttle and steering
 based on the centroid value, and then publish them to their corresponding topics.
 Throttle is based on whether or not a centroid exists - car goes faster when centroid is present and slows down when there is none.
-Steering is based on a proportional controller implemented by the calculating the error between the centroid found in [**line_detection_node**](#line_detection_node) or [**lane_detection_node**](#lane_detection_node) and the heading of the car. 
+Steering is based on a proportional controller implemented by the calculating the error between the centroid found in [**lane_detection_node**](#lane_detection_node) and the heading of the car. 
 
 Gains can be tweaked in the lane_guidance.py script.
 
-#### **camera_values_node**
+#### **ros_racer_calibration_node**
 
-Associated file: camera_values_ros.py
+Associated file: **ros_racer_calibration_node.py**
 
-See [**Find Camera Parameters**](#find-camera-parameters) for details about this node.
+Calibrate the camera, throttle and steering in this node by using the sliders to find:
+- the right color filter 
+- desired image dimmensions
+- throttle values for both the optimal condtion (error = 0) and the non optimal condtion (error !=0) AKA go fast when error=0 and go slow if error !=0
+- steering sensitivty change the Kp value to adjust the steering sensitivty (as Kp --> 1 steering more responsive, as Kp --> 0  steering less responsive) 
+
+| Property       | Info                                                       |
+| ---------- | --------------------- |
+| Hue_low, Hue_high | Setting low and high values for Hue  | 
+| Saturation_low, Saturation_high | Setting low and high values for Saturation | 
+| Value_low, Value_high | Setting low and high values for Value | 
+| Width_min, Width_max | Specify the width range of the line to be detected  | 
+
+More morphological transfromations and examples can be found <a href="https://docs.opencv.org/3.4/db/df6/tutorial_erosion_dilatation.html" >here</a> and  <a href="https://docs.opencv.org/master/d9/d61/tutorial_py_morphological_ops.html" >here</a>
+
+These values are saved automatically to a configuration file, so just press control-c when the deepracer is calibrated.
+
+<div align="center">
 
 ## Topics
 
+</div>
 
 #### **throttle** 
 | Name       | Msg Type              | Info                                                       |
 | ---------- | --------------------- | ---------------------------------------------------------- |
 | throttle   | std_msgs.msg.Float32  | Float value from -1 to 1 for controlling throttle          |
-
 
 #### **steering**
 | Name       | Msg Type              | Info                                                       |
@@ -436,40 +401,57 @@ See [**Find Camera Parameters**](#find-camera-parameters) for details about this
 #### **centroid**
 | Name       | Msg Type              | Info                                                       |
 | ---------- | --------------------- | ---------------------------------------------------------- |
-| centroid   | std_msgs.msg.Int32MultiArray    | arg 1: Integer for x coordinate of centroid in camera image space arg 2: camera width ex. [centroid,camera_width]|
+| centroid   | std_msgs.msg.Float32  | Float value for that represents the error of the x coordinate of centroid in camera image space|
 
-
+<div align="center">
 
 ## Launch
 
+</div>
+
 #### **throttle and steering launch**
+
+Associated file: **throttle_and_steering_launch.launch**
+
 This file launches both [**throttle_client**](#throttle_client) and [**steering**](#Topics) seperately because these topics can take some time to initialize which can delay productivity. Launch this script once and use the other launch files listed below to get the robot moving.
 
 `roslaunch ucsd_robo_car_simple_ros throttle_and_steering_launch.launch`
 
-#### **line Detection launch**
-
-This file will launch [**line_detection_node**](#line_detection_node), [**lane_guidance_node**](#lane_guidance_node), [**camera_server**](#camera_server) and load the color filter parameters created using [**Find Camera Parameters**](#find-camera-parameters)
-
-**Before launching, please calibrate the robot first while on the stand! See** [**Throttle and Steering Calibration**](#throttle-and-steering-calibration)
-
-`roslaunch ucsd_robo_car_simple_ros lineDetection_launch.launch`
-
 #### **lane Detection launch**
 
-This file will launch [**lane_detection_node**](#lane_detection_node), [**lane_guidance_node**](#lane_guidance_node), [**camera_server**](#camera_server) and load the color filter parameters created using [**Find Camera Parameters**](#find-camera-parameters)
+Associated file: **laneDetection_launch.launch**
 
-**Before launching, please calibrate the robot first while on the stand! See** [**Throttle and Steering Calibration**](#throttle-and-steering-calibration)
+This file will launch [**lane_detection_node**](#lane_detection_node), [**lane_guidance_node**](#lane_guidance_node), [**camera_server**](#camera_server) and load the color filter parameters created using [ros_racer_calibration_node](#ros_racer_calibration_node)
+
+**Before launching, please calibrate the robot first while on the stand!**
 
 `roslaunch ucsd_robo_car_simple_ros laneDetection_launch.launch`
 
-#### **ucsd_robo_car calibration launch**
+#### **ros racer calibration launch**
 
-This file will launch [**camera_server**](#camera_server) and [**Find Camera Parameters**](#find-camera-parameters)
+Associated file: **ros_racer_calibration_launch.launch**
 
-`roslaunch ucsd_robo_car_calibration_launch.launch`
+[ros_racer_calibration_node](#ros_racer_calibration_node)
+
+This file will launch [**camera_server**](#camera_server), [ros_racer_calibration_node](#ros_racer_calibration_node) and [throttle and steering launch](#throttle-and-steering-launch)
+
+`roslaunch ucsd_robo_car_simple_ros ros_racer_calibration_launch.launch`
+
+#### **ros racer launch**
+[ros racer launch](#ros racer launch)
+This file will launch [throttle and steering launch](#throttle-and-steering-launch) and [lane detection launch](#lane-detection-launch)
+
+`roslaunch ucsd_robo_car_simple_ros ros_racer_launch.launch`
+
+<div align="center">
 
 ## Tools 
+
+</div>
+
+#### ROS Guide Book
+
+[ROS Guide Book](#ros-guide-book)
 
 #### **Run Indvidual Programs**
 
@@ -477,76 +459,50 @@ To run any indvidual program, enter this into the terminal and change file_name.
 
 `rosrun ucsd_robo_car_simple_ros file_name.py`
 
-#### **Throttle and Steering Calibration**
-
-To calibrate steering and throttle, using the commands below to test different values for throttle and steering angle. To make sure the right message is passed to topics, pressing the "TAB" key on the keyboard twice will autocomplete how the message should be structured and only the value at the end needs to be changed. 
-
-**NOTE: Throttle is EXTREMELY sensitive. Start with very small values such as 0.01, 0.02, 0.03**
-
-First launch the throttle and steering clients 
-
-`roslaunch ucsd_robo_car_simple_ros throttle_and_steering_launch.launch`
-
-Then in 2 new terminal windows enter these commands 
-
-`rostopic pub -r 15 /steering [TAB][TAB]`
-
-`rostopic pub -r 15 /throttle [TAB][TAB]`
-
-Once throttle values are found, enter them in the [**lane_guidance_node**](#lane_guidance_node) as the values the car will go when it finds or doesnt find a line or lane to follow
-
-
-#### **Find Camera Parameters** 
-
-Associated file: camera_values_ros.py
-
-This program allows for the user to quickly tune various camera post-processing parameters including a custom color filter. 
-These values will **automatically** be sent to either the [**line_detection_node**](#line_detection_node) or the [**lane_detection_node**](#lane_detection_node) (depending on which you are using) by using rosparam functionality. These values are also written to a file called **custom_filter.yaml** which permanently stores these valus to be used at a later time so that this program does not have to be run again. 
-
-To run this script:
-
-`roslaunch ucsd_robo_car_simple_ros ucsd_robo_car_calibration_launch.launch`
-
-OR
-
-`rosrun ucsd_robo_car_simple_ros camera_server.py`
-
-`rosrun ucsd_robo_car_simple_ros camera_values_ros.py`
-
-Answer the promt _("Create green filter? (y/n) ")_ then hit enter and begin creating your custom filter and color tracker!
-
-
-
-| Property       | Info                                                       |
-| ---------- | --------------------- |
-| Hue_low, Hue_high | Setting low and high values for Hue  | 
-| Saturation_low, Saturation_high | Setting low and high values for Saturation | 
-| Value_low, Value_high | Setting low and high values for Value | 
-| Width_min, Width_max | Specify the width range of the line to be detected  | 
-
-More morphological transfromations and examples can be found <a href="https://docs.opencv.org/3.4/db/df6/tutorial_erosion_dilatation.html" >here</a> and  <a href="https://docs.opencv.org/master/d9/d61/tutorial_py_morphological_ops.html" >here</a>
-
 #### **Decoder** 
 
-Associated file: decoder.py
+Associated file: **decoder.py**
 
 This provides a solution for cv_bridge not working and decodes the incoming image into a numpy array that is then passed to the [**camera_rgb**](#Topics) topic. If cv_bridge is built with python3, then this file is not neccessary.
 
+<div align="center">
 
-## Issues and Fixes
+## Troubleshooting
 
-### **Error With CV_Bridge Conversion From Image Message To OpenCV Image**
+</div>
+
+#### **Camera not working** 
+
+If while running [deepracer_calibration_node](#deepracer_calibration_node) or [aws_rosracer.launch](#aws_rosracerlaunch) and if the cv2 windows do not open, then follow the procedure below to potentially resolve the issue.
+
+1. Make sure camera is plugged in all the way into its USB socket
+1. See if image feed is coming through in another application like cheese. (Enter `cheese` into terminal window)
+1. Check to see if the camera topic is publishing data `rostopic echo /camera_rgb`
+1. Restart ROS core 
+1. Reboot if none of the above worked and try again `sudo reboot now`
+
+If the camera is still not working after trying the procedure above, then it could be a hardware issue. (Did the car crash?)
+
+#### **Throttle and steering not working** 
+
+If while running [ros_racer_calibration_node](#ros_racer_calibration_node) or [ros racer launch](#ros racer launch) and the throttle and steering are unresponsive, then follow the procedure below to potentially resolve the issue.
+
+1. Make sure ESC is turned on
+1. Make sure battery is plugged in
+1. Make sure battery has a charge
+1. Make sure servo and ESC wires are plugged into the pwm board into the correct channels correctly
+1. Check to see if the servo topic is publishing data 
+1. Verify that the throttle values found in [ros_racer_calibration_node](#ros_racer_calibration_node) were loaded properly when running  [aws_rosracer.launch](#aws_rosracerlaunch) (Values will be printed to the terminal first when running the launch file) 
+1. Restart ROS core 
+1. Reboot if none of the above worked and try again `sudo reboot now`
+
+If the Throttle and steering are still not working after trying the procedure above, then it could be a hardware issue. (Did the car crash?)
+
+#### **Error With CV_Bridge Conversion From Image Message To OpenCV Image**
 
 Using **bridge_object.imgmsg_to_cv2()** threw errors on our Jetson Nano environment, so we had to resort to our own image decoder function. Function **decodeImage()** can be imported from **decoder.py**. If you don't want to use our function, the problem can be avoided by properly building CV_Bridge with Python3 in the ROS package.
 
 An alternative solution can be found <a href="https://medium.com/@beta_b0t/how-to-setup-ros-with-python-3-44a69ca36674" >here</a>
-
-### **Throttle Not working**
-
-This issue can vary between cars, but generally the problem lies in the battery supply and the PWM range that is mapped by the Adafruit library. If the "start" PWM is too low, then even a maxed out "1" might not map to the PWM value that will trigger the ESC. First make sure the -1 to 1 range is properly calibrated. During runtime, the scale constant found in **throttle_client.py** can also be tuned. As your battery begins to drain, the PWM range becomes under-saturated which decreases performance of the motor. 
-
-**Tip: Always try driving with fully charged battery or periodically recalibrate pwm values manually as motor performance starts decreasing.**
-
 
 ### **ROS Version Is Not Compatible with Python3**
 If your're having issues using python3, then there is a chance that the virtual environment (explained in [**Environment Configuration**](#environment-configuration)) was not setup properly. Try setting up another environment to see if that solves the issue.
@@ -554,24 +510,49 @@ If your're having issues using python3, then there is a chance that the virtual 
 More info found 
 <a href="https://medium.com/@beta_b0t/how-to-setup-ros-with-python-3-44a69ca36674" >here</a>
 
+<div align="center">
+
 ## **Demonstration videos** 
+
+</div>
+
+<div align="center">
 
 #### Lane detection example with yellow filter
 
 [![lane detection example with yellow filter](https://j.gifs.com/6WRqXN.gif)](https://youtu.be/f4VrncQ7HU)
 
+</div>
+
+<div align="center">
+
 #### Blue color detection
 
 [![Blue color detection](https://j.gifs.com/PjZoj6.gif)](https://youtu.be/c9rkRHGGea0)
+
+</div>
+
+<div align="center">
 
 #### Yellow color detection and line width specification
 
 [![Yellow color detection and line width specification](https://j.gifs.com/BrLJro.gif)](https://youtu.be/l2Ngtd461DY)
 
+</div>
+
+<div align="center">
+
 #### Throttle and steering
 
 [![Throttle and steering](https://j.gifs.com/362n6p.gif)](https://youtu.be/lhYzs5v6jtI)
 
+</div>
+
+<div align="center">
+
 #### Manipulating image dimensions
 
 [![Manipulating image dimensions](https://j.gifs.com/lR5oR1.gif)](https://youtu.be/_DhG6dduYPs)
+
+</div>
+
