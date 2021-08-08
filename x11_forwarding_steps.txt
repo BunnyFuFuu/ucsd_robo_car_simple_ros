@@ -1,0 +1,16 @@
+1.in vm, ssh into jetson ssh -X jetson@ip_address
+2. touch ~/.Xauthority
+3. chown jetson:jetson ~/.Xauthority
+4. chmod 0600 ~/.Xauthority
+5. xauth generate :0 . trusted
+6. (xauth -f ~jetson/.Xauthority list|tail -1)
+7. xauth list | grep unix`echo $DISPLAY | cut -c10-12` > /tmp/xaut
+8. xauth list
+	amss-5u1o/unix:10  MIT-MAGIC-COOKIE-1  6f9bbaa8c214e3af91c0a17fb4ac4166
+9. sudo su
+10. cd
+11. touch ~/.Xauthority
+12. chown jetson:jetson ~/.Xauthority
+13. chmod 0600 ~/.Xauthority
+14. xauth add amss-5u1o/unix:10 MIT-MAGIC-COOKIE-1 6f9bbaa8c214e3af91c0a17fb4ac4166
+15. xauth merge /home/jetson/.Xauthority
