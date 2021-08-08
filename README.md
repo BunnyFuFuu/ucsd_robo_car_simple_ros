@@ -86,11 +86,7 @@ CV Bridge provides functions to easily convert (encode/decode) in between ROS im
 
 </div>
 
-<div align="center">
-
 ### **1. openCV Setup**
-
-</div>
 
   **a. Check if you have openCV for python3**
 
@@ -123,15 +119,9 @@ more details <a href="https://pypi.org/project/opencv-python/" >here</a>
 
 _**if you want to compile from source follow steps below**_
 
-****
-
   **d. (OPTIONAL) build instructions for openCV** <a href="https://qengineering.eu/install-opencv-4.5-on-jetson-nano.html" >here</a>
 
-<div align="center">
-
 ### **2. Virtual Environment Setup**
-
-</div>
 
   **a. Creat environment**
 
@@ -181,11 +171,9 @@ _**if you want to compile from source follow steps below**_
 
 </div>
 
-<div align="center">
 
 ### **3. Upgrading**
 
-</div>
 
 `pip install pyyaml`
 
@@ -195,11 +183,8 @@ _**if you want to compile from source follow steps below**_
 
 `pip install --upgrade pyinstaller`
 
-<div align="center">
 
 ### **4. Install Adafruit Library**
-
-</div>
 
 `pip install adafruit-circuitpython-pca9685`
 
@@ -207,19 +192,12 @@ _**if you want to compile from source follow steps below**_
 
 more details <a href="https://learn.adafruit.com/16-channel-pwm-servo-driver/python-circuitpython" >here</a>
 
-<div align="center">
-
 ### **5. Install ROS Melodic**
-
-</div>
 
 Instructions found <a href="https://docs.google.com/document/d/1LxcTvSTRHVxSnv3x_cJ667loWgzCt7ikTJk51dKAFSs/edit?usp=sharing" >here</a>
 
-<div align="center">
 
 ### *6. Accessing this repository**
-
-</div>
 
   **a. Generate an SSH key and provide it to Gitlab for access to repositories**
 
@@ -303,11 +281,8 @@ Instructions found <a href="https://docs.google.com/document/d/1LxcTvSTRHVxSnv3x
 
    `chmod -R 777 .`
 
-<div align="center">
-
 ## **7. Enable X11 forwarding**
 
-</div>
 
 Associated file: **x11_forwarding_steps.txt**
 
