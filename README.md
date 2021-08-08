@@ -57,7 +57,11 @@ A simple ROS package using OpenCV on a 1/10 RC car chassis with ackerman steerin
     - [Throttle and steering](#throttle-and-steering)
     - [Manipulating image dimensions](#manipulating-image-dimensions)
 
+<div align="center">
+
 ## Dependencies
+
+<div>
 
 ### [cv2](https://opencv.org/)
 
