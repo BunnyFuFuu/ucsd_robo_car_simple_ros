@@ -42,7 +42,7 @@
     - [ROS Guide Book](#ros-guide-book)
     - [Run Indvidual Programs](#run-indvidual-programs)
     - [Decoder](#decoder)
-  - [**Issues and Fixes**](#issues-and-fixes)
+  - [**Troubleshooting**](#troubleshooting)
     - [Camera not working](#camera-not-working)
     - [Throttle and steering not working](#throttle-and-steering-not-working)
     - [Error With CV_Bridge Conversion From Image Message To OpenCV Image](#error-with-cv_bridge-conversion-from-image-message-to-opencv-image)
