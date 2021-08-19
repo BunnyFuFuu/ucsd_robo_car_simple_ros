@@ -82,4 +82,4 @@ class TestingCar:
         cv2.destroyAllWindows()
 
 if __name__ == '__main__':
-    TestingCar().test_car
+    TestingCar().test_car()
