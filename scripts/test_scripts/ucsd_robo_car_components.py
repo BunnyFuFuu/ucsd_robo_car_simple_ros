@@ -50,8 +50,8 @@ class TestingCar:
         self.throttle_forward = 2000
 
         # create trackbars for motor control
-        self.steering_track_bar = cv2.createTrackbar('Steering_value', 'sliders', steer_straight, steer_right, callback)
-        self.throttle_track_bar = cv2.createTrackbar('Throttle_value', 'sliders', throttle_neutral, throttle_forward, callback)
+        self.steering_track_bar = cv2.createTrackbar('Steering_value', 'sliders', self.steer_straight, self.steer_right, callback)
+        self.throttle_track_bar = cv2.createTrackbar('Throttle_value', 'sliders', self.throttle_neutral, self.throttle_forward, callback)
 
     def test_car(self):
         while(True):
