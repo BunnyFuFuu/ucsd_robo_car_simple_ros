@@ -5,7 +5,7 @@ vid = cv2.VideoCapture(0)
 
 
 # cap = cv2.VideoCapture(0)
-cv2.namedWindow('sliders')
+cv2.namedWindow('frame')
 
 def callback(x):
     pass
@@ -29,8 +29,8 @@ throttle_reverse = 0
 throttle_neutral = 1100
 throttle_forward = 2000
 
-cv2.createTrackbar('Steering_value', 'sliders', steer_straight, steer_right, callback)
-cv2.createTrackbar('Throttle_value', 'sliders', throttle_neutral, throttle_forward, callback)
+cv2.createTrackbar('Steering_value', 'frame', steer_straight, steer_right, callback)
+cv2.createTrackbar('Throttle_value', 'frame', throttle_neutral, throttle_forward, callback)
 # print("debug 5")
 
 # def test_car():
@@ -89,8 +89,8 @@ while(True):
     steering_float = slider_to_normalized(steer_input)
     throttle_float = slider_to_normalized(throttle_input)
 
-    print(f"\rcurrent steering/throttle: {steering_float}, {throttle_float}", end=" ")
-  
+    print(f"\rcurrent steering/throttle: {round(steering_float, 4)}, {round(throttle_float, 4)}", end=" ")
+    
     # Display the resulting frame
     cv2.imshow('frame', frame)
       
