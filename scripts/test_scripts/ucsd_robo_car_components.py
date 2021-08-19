@@ -74,7 +74,6 @@ class TestingCar:
 
                 # Display the resulting frame
                 cv2.imshow('frame', frame)
-                print("debug 3")
             except KeyboardInterrupt:  
                 break
         
