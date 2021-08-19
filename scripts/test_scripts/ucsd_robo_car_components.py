@@ -89,7 +89,7 @@ while(True):
     steering_float = slider_to_normalized(steer_input)
     throttle_float = slider_to_normalized(throttle_input)
 
-    print(f"\rcurrent steering/throttle: {round(steering_float, 4)}, {round(throttle_float, 4)}", end=" ")
+    print(f"\rcurrent steering/throttle: {round(steering_float, 2)}, {round(throttle_float, 2)}", end=" ")
     
     # Display the resulting frame
     cv2.imshow('frame', frame)
