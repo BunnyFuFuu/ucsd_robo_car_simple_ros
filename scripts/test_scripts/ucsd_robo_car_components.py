@@ -57,7 +57,7 @@ class TestingCar:
         while(True):
             try:  
                 # Capture the camera feed frame by frame
-                ret, frame = cap.read()
+                ret, frame = self.cap.read()
                 steer_input = cv2.getTrackbarPos('Steering_value', 'sliders')
                 throttle_input = cv2.getTrackbarPos('Throttle_value', 'sliders')
                 
@@ -77,7 +77,7 @@ class TestingCar:
                 break
         
         # After the loop release the cap object
-        cap.release()
+        self.cap.release()
         # Destroy all the windows
         cv2.destroyAllWindows()
 
