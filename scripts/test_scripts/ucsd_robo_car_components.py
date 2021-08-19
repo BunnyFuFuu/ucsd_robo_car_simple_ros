@@ -68,5 +68,6 @@ def test_car():
 
 if __name__ == '__main__':
     print("debug 1")
-    test_car()
+    while True:
+        test_car()
     print("debug 4")
