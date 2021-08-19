@@ -35,6 +35,7 @@ print("debug 5")
 
 class TestingCar:
     def __init__(self):
+        self.place = 1
         # self.kit = ServoKit(channels=16)
         # self.cap = cv2.VideoCapture(0)
         # self.slider_window_name = cv2.namedWindow('sliders')
@@ -67,7 +68,7 @@ class TestingCar:
                 steering_float = slider_to_normalized(steer_input)
                 throttle_float = slider_to_normalized(throttle_input)
 
-                print(f"\rcurrent steering/throttle: {steering_float}, {throttle_float}", end=" ")
+                # print(f"\rcurrent steering/throttle: {steering_float}, {throttle_float}", end=" ")
 
                 # Publish re-mapped throttle/steering values
                 # self.kit.servo[1].angle = steering_float # steering servo is on channel 1
