@@ -1,4 +1,4 @@
-#!/usr/bin python3
+#!/usr/bin/python3
 import rospy
 from sensor_msgs.msg import Image
 import cv2
@@ -10,7 +10,7 @@ CAMERA_TOPIC_NAME = 'camera_rgb'
 cv2_video_capture = cv2.VideoCapture(0)
 CAMERA_FREQUENCY = 10  # Hz
 
-## this is a test
+## this is a test and another
 
 def talker():
     pub = rospy.Publisher(CAMERA_TOPIC_NAME, Image, queue_size=10)
