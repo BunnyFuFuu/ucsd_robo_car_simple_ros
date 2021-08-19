@@ -33,7 +33,7 @@ cv2.createTrackbar('Steering_value', 'sliders', steer_straight, steer_right, cal
 cv2.createTrackbar('Throttle_value', 'sliders', throttle_neutral, throttle_forward, callback)
 print("debug 5")
 
-def test_car(self):
+def test_car():
     while(True):
         try:  
             # Capture the camera feed frame by frame
