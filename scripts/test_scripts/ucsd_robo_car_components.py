@@ -4,8 +4,8 @@ import cv2
 
 
 
-# cap = cv2.VideoCapture(0)
-# cv2.namedWindow('sliders')
+cap = cv2.VideoCapture(0)
+cv2.namedWindow('sliders')
 
 def callback(x):
     pass
@@ -19,46 +19,47 @@ def slider_to_normalized(slider_input):
             (output_end - output_start) / (input_end - input_start))
     return normalized_output
 
+THESE VALUES ARE ALL SCALED FOR FINE TUNINING. ACTUAL VALUES RANGE FROM [-1,1]
+steer_left = 0
+steer_straight = 1000
+steer_right = 2000
+
 #THESE VALUES ARE ALL SCALED FOR FINE TUNINING. ACTUAL VALUES RANGE FROM [-1,1]
-# steer_left = 0
-# steer_straight = 1000
-# steer_right = 2000
+throttle_reverse = 0
+throttle_neutral = 1100
+throttle_forward = 2000
 
-# #THESE VALUES ARE ALL SCALED FOR FINE TUNINING. ACTUAL VALUES RANGE FROM [-1,1]
-# throttle_reverse = 0
-# throttle_neutral = 1100
-# throttle_forward = 2000
-
-# cv2.createTrackbar('Steering_value', 'sliders', steer_straight, steer_right, callback)
-# cv2.createTrackbar('Throttle_value', 'sliders', throttle_neutral, throttle_forward, callback)
+cv2.createTrackbar('Steering_value', 'sliders', steer_straight, steer_right, callback)
+cv2.createTrackbar('Throttle_value', 'sliders', throttle_neutral, throttle_forward, callback)
 print("debug 5")
 
 class TestingCar:
     def __init__(self):
         # self.kit = ServoKit(channels=16)
-        self.cap = cv2.VideoCapture(0)
-        self.slider_window_name = cv2.namedWindow('sliders')
+        # self.cap = cv2.VideoCapture(0)
+        # self.slider_window_name = cv2.namedWindow('sliders')
         
         #THESE VALUES ARE ALL SCALED FOR FINE TUNINING. ACTUAL VALUES RANGE FROM [-1,1]
-        self.steer_left = 0
-        self.steer_straight = 1000
-        self.steer_right = 2000
+        # self.steer_left = 0
+        # self.steer_straight = 1000
+        # self.steer_right = 2000
 
-        #THESE VALUES ARE ALL SCALED FOR FINE TUNINING. ACTUAL VALUES RANGE FROM [-1,1]
-        self.throttle_reverse = 0
-        self.throttle_neutral = 1100
-        self.throttle_forward = 2000
+        # #THESE VALUES ARE ALL SCALED FOR FINE TUNINING. ACTUAL VALUES RANGE FROM [-1,1]
+        # self.throttle_reverse = 0
+        # self.throttle_neutral = 1100
+        # self.throttle_forward = 2000
 
         # create trackbars for motor control
-        self.steering_track_bar = cv2.createTrackbar('Steering_value', 'sliders', self.steer_straight, self.steer_right, callback)
-        self.throttle_track_bar = cv2.createTrackbar('Throttle_value', 'sliders', self.throttle_neutral, self.throttle_forward, callback)
+        # self.steering_track_bar = cv2.createTrackbar('Steering_value', 'sliders', self.steer_straight, self.steer_right, callback)
+        # self.throttle_track_bar = cv2.createTrackbar('Throttle_value', 'sliders', self.throttle_neutral, self.throttle_forward, callback)
         print("debug 2")
 
     def test_car(self):
         while(True):
             try:  
                 # Capture the camera feed frame by frame
-                ret, frame = self.cap.read()
+                # ret, frame = self.cap.read()
+                ret, frame = cap.read()
                 steer_input = cv2.getTrackbarPos('Steering_value', 'sliders')
                 throttle_input = cv2.getTrackbarPos('Throttle_value', 'sliders')
                 
@@ -78,7 +79,8 @@ class TestingCar:
                 break
         
         # After the loop release the cap object
-        self.cap.release()
+        cap.release()
+        # self.cap.release()
         # Destroy all the windows
         cv2.destroyAllWindows()
 
