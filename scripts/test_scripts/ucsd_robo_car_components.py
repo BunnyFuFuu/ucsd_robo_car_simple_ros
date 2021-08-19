@@ -83,8 +83,8 @@ while(True):
     # Capture the video frame
     # by frame
     ret, frame = vid.read()
-    steer_input = cv2.getTrackbarPos('Steering_value', 'sliders')
-    throttle_input = cv2.getTrackbarPos('Throttle_value', 'sliders')
+    steer_input = cv2.getTrackbarPos('Steering_value', 'frame')
+    throttle_input = cv2.getTrackbarPos('Throttle_value', 'frame')
 
     steering_float = slider_to_normalized(steer_input)
     throttle_float = slider_to_normalized(throttle_input)
