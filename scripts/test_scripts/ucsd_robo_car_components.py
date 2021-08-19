@@ -54,14 +54,17 @@ def test_car():
         # Display the resulting frame
         cv2.imshow('frame', frame)
     except KeyboardInterrupt:  
-        break
+        cap.release()
+        # self.cap.release()
+        # Destroy all the windows
+        cv2.destroyAllWindows()
         
         
     # After the loop release the cap object
-    cap.release()
-    # self.cap.release()
-    # Destroy all the windows
-    cv2.destroyAllWindows()
+    # cap.release()
+    # # self.cap.release()
+    # # Destroy all the windows
+    # cv2.destroyAllWindows()
 
 if __name__ == '__main__':
     print("debug 1")
