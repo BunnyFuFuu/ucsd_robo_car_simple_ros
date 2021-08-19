@@ -63,7 +63,7 @@ class TestingCar:
                 throttle_input = cv2.getTrackbarPos('Throttle_value', 'sliders')
                 
                 # re-map input values [0,2000] ---> [-1,1] for BOTH throttle and steering
-                steering_float = Steering_sensitivity*slider_to_normalized(steer_input)
+                steering_float = slider_to_normalized(steer_input)
                 throttle_float = slider_to_normalized(throttle_input)
 
                 print(f"\rcurrent steering/throttle: {steering_float}, {throttle_float}", end=" ")
