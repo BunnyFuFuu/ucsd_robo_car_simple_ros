@@ -19,7 +19,7 @@ def slider_to_normalized(slider_input):
             (output_end - output_start) / (input_end - input_start))
     return normalized_output
 
-THESE VALUES ARE ALL SCALED FOR FINE TUNINING. ACTUAL VALUES RANGE FROM [-1,1]
+# THESE VALUES ARE ALL SCALED FOR FINE TUNINING. ACTUAL VALUES RANGE FROM [-1,1]
 steer_left = 0
 steer_straight = 1000
 steer_right = 2000
