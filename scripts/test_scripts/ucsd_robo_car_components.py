@@ -37,7 +37,7 @@ class TestingCar:
     def __init__(self):
         # self.kit = ServoKit(channels=16)
         self.cap = cv2.VideoCapture(0)
-        self.cv2.namedWindow('sliders')
+        self.slider_window_name = cv2.namedWindow('sliders')
         
         #THESE VALUES ARE ALL SCALED FOR FINE TUNINING. ACTUAL VALUES RANGE FROM [-1,1]
         self.steer_left = 0
@@ -50,8 +50,8 @@ class TestingCar:
         self.throttle_forward = 2000
 
         # create trackbars for motor control
-        self.cv2.createTrackbar('Steering_value', 'sliders', steer_straight, steer_right, callback)
-        self.cv2.createTrackbar('Throttle_value', 'sliders', throttle_neutral, throttle_forward, callback)
+        self.steering_track_bar = cv2.createTrackbar('Steering_value', 'sliders', steer_straight, steer_right, callback)
+        self.throttle_track_bar = cv2.createTrackbar('Throttle_value', 'sliders', throttle_neutral, throttle_forward, callback)
 
     def test_car(self):
         while(True):
