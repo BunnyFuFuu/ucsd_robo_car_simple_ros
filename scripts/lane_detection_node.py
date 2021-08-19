@@ -2,7 +2,7 @@
 import rospy
 import cv2
 import numpy as np
-from std_msgs.msg import Int32, Int32MultiArray
+from std_msgs.msg import Int32, Int32MultiArray, Float32
 from sensor_msgs.msg import Image
 from decoder import decodeImage
 import time
