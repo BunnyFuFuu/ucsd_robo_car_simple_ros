@@ -5,7 +5,7 @@ vid = cv2.VideoCapture(0)
 
 
 # cap = cv2.VideoCapture(0)
-# cv2.namedWindow('sliders')
+cv2.namedWindow('sliders')
 
 def callback(x):
     pass
