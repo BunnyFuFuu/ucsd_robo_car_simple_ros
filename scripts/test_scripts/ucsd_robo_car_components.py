@@ -31,7 +31,7 @@ def slider_to_normalized(slider_input):
 
 # cv2.createTrackbar('Steering_value', 'sliders', steer_straight, steer_right, callback)
 # cv2.createTrackbar('Throttle_value', 'sliders', throttle_neutral, throttle_forward, callback)
-
+print("debug 5")
 
 class TestingCar:
     def __init__(self):
@@ -52,6 +52,7 @@ class TestingCar:
         # create trackbars for motor control
         self.steering_track_bar = cv2.createTrackbar('Steering_value', 'sliders', self.steer_straight, self.steer_right, callback)
         self.throttle_track_bar = cv2.createTrackbar('Throttle_value', 'sliders', self.throttle_neutral, self.throttle_forward, callback)
+        print("debug 2")
 
     def test_car(self):
         while(True):
@@ -73,6 +74,7 @@ class TestingCar:
 
                 # Display the resulting frame
                 cv2.imshow('frame', frame)
+                print("debug 3")
             except KeyboardInterrupt:  
                 break
         
@@ -82,4 +84,6 @@ class TestingCar:
         cv2.destroyAllWindows()
 
 if __name__ == '__main__':
+    print("debug 1")
     TestingCar().test_car()
+    print("debug 4")
