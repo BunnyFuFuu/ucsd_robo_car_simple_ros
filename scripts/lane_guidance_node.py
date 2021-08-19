@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/python3
 import rospy
 from std_msgs.msg import Float32, Int32, Int32MultiArray
 
