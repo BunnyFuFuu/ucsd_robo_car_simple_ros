@@ -1,5 +1,5 @@
 <launch>
-  <include file="$(find ucsd_robo_car_simple_ros)/launch/throttle_and_steering_launch.launch"> </include>
+  <!-- <include file="$(find ucsd_robo_car_simple_ros)/launch/throttle_and_steering_launch.launch"> </include> -->
   <node name="camera_server" pkg="ucsd_robo_car_simple_ros" type="camera_server.py" />
   <node name="ros_racer_calibration_node" pkg="ucsd_robo_car_simple_ros" type="ros_racer_calibration_node.py" />
 </launch>
