@@ -35,7 +35,7 @@ def slider_to_normalized(slider_input):
 
 class TestingCar:
     def __init__(self):
-        self.kit = ServoKit(channels=16)
+        # self.kit = ServoKit(channels=16)
         self.cap = cv2.VideoCapture(0)
         self.cv2.namedWindow('sliders')
         
