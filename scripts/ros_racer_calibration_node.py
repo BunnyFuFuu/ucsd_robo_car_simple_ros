@@ -193,7 +193,7 @@ class Calibration:
         gray = cv2.cvtColor(bitwise_mask, cv2.COLOR_BGR2GRAY)
 
         # changing to black and white color space
-        gray_lower = 50
+        gray_lower = 20
         gray_upper = 255
         (dummy, blackAndWhiteImage) = cv2.threshold(gray, gray_lower, gray_upper, cv2.THRESH_BINARY)
         contours, dummy = cv2.findContours(blackAndWhiteImage, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
