@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 import cv2
-# # from adafruit_servokit import ServoKit
+from adafruit_servokit import ServoKit
 
 
 vid = cv2.VideoCapture(0)
@@ -40,6 +40,10 @@ while(True):
 
     steering_float = slider_to_normalized(steer_input)
     throttle_float = slider_to_normalized(throttle_input)
+
+    kit.servo[1].angle = steering_float # steering servo is on channel 1
+    kit.continuous_servo[2].throttle = throttle_float # DC motor is on channel 2
+
 
     print(f"\r[steering, throttle]: [{round(steering_float, 2)}, {round(throttle_float, 2)}]", end=" ")
     
