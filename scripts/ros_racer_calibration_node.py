@@ -133,7 +133,7 @@ class Calibration:
 
         
         number_of_lines = cv2.getTrackbarPos('number_of_lines', MASK_WINDOW_NAME)
-        error_threshold = float(cv2.getTrackbarPos('error_threshold', MASK_WINDOW_NAME)/100)
+        error_threshold = float(cv2.getTrackbarPos('error_threshold', IMG_WINDOW_NAME)/100)
 
         inverted_filter = cv2.getTrackbarPos('Inverted_filter', IMG_WINDOW_NAME)
 
