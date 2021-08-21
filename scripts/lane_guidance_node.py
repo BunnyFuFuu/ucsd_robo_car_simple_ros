@@ -53,7 +53,7 @@ class PathPlanner:
             self.steering_publisher.publish(self.steering_float)
             self.throttle_publisher.publish(self.throttle_float)
         except KeyboardInterrupt:
-            self.throttle_publisher.data = self.zero_throttle
+            self.throttle_float.data = self.zero_throttle
             self.throttle_publisher.publish(self.throttle_float)
 
 
@@ -63,6 +63,7 @@ def main():
     while not rospy.is_shutdown():
         rospy.spin()
         rate.sleep()
+    path_planner.throttle_publisher.publish(path_planner.)
 
 
 if __name__ == '__main__':
