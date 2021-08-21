@@ -70,28 +70,28 @@ zero_error_throttle_mode = 1
 error_throttle_mode = 2
 
 
-cv2.createTrackbar('lowH', 'sliders', lowH, highH, callback)
-cv2.createTrackbar('highH', 'sliders', highH, highH, callback)
-cv2.createTrackbar('lowS', 'sliders', lowS, highS, callback)
-cv2.createTrackbar('highS', 'sliders', highS, highS, callback)
-cv2.createTrackbar('lowV', 'sliders', lowV, highV, callback)
-cv2.createTrackbar('highV', 'sliders', highV, highV, callback)
+cv2.createTrackbar('lowH', SLIDER_WINDOW_NAME, lowH, highH, callback)
+cv2.createTrackbar('highH', SLIDER_WINDOW_NAME, highH, highH, callback)
+cv2.createTrackbar('lowS', SLIDER_WINDOW_NAME, lowS, highS, callback)
+cv2.createTrackbar('highS', SLIDER_WINDOW_NAME, highS, highS, callback)
+cv2.createTrackbar('lowV', SLIDER_WINDOW_NAME, lowV, highV, callback)
+cv2.createTrackbar('highV', SLIDER_WINDOW_NAME, highV, highV, callback)
 
-cv2.createTrackbar('Inverted_filter', 'sliders', not_inverted, inverted, callback)
+cv2.createTrackbar('Inverted_filter', SLIDER_WINDOW_NAME, not_inverted, inverted, callback)
 
-cv2.createTrackbar('min_width', 'sliders', min_width, max_width, callback)
-cv2.createTrackbar('max_width', 'sliders', max_width, max_width, callback)
-cv2.createTrackbar('number_of_lines', 'sliders', max_number_of_lines, max_number_of_lines, callback)
-cv2.createTrackbar('error_threshold', 'sliders', max_error_threshold, max_error_threshold, callback)
+cv2.createTrackbar('min_width', SLIDER_WINDOW_NAME, min_width, max_width, callback)
+cv2.createTrackbar('max_width', SLIDER_WINDOW_NAME, max_width, max_width, callback)
+cv2.createTrackbar('number_of_lines', SLIDER_WINDOW_NAME, max_number_of_lines, max_number_of_lines, callback)
+cv2.createTrackbar('error_threshold', SLIDER_WINDOW_NAME, max_error_threshold, max_error_threshold, callback)
 
-cv2.createTrackbar('frame_width', 'sliders', default_frame_width, max_frame_width, callback)
-cv2.createTrackbar('rows_to_watch', 'sliders', default_min_rows, max_rows, callback)
-cv2.createTrackbar('rows_offset', 'sliders', default_min_offset, max_offset, callback)
+cv2.createTrackbar('frame_width', SLIDER_WINDOW_NAME, default_frame_width, max_frame_width, callback)
+cv2.createTrackbar('rows_to_watch', SLIDER_WINDOW_NAME, default_min_rows, max_rows, callback)
+cv2.createTrackbar('rows_offset', SLIDER_WINDOW_NAME, default_min_offset, max_offset, callback)
 
-cv2.createTrackbar('Steering_sensitivity', 'sliders', steer_sensitivity_default, steer_sensitivity_max, callback)
-cv2.createTrackbar('Steering_value', 'sliders', steer_straight, steer_right, callback)
-cv2.createTrackbar('Throttle_mode', 'sliders', zero_throttle_mode, error_throttle_mode, callback)
-cv2.createTrackbar('Throttle_value', 'sliders', throttle_neutral, throttle_forward, callback)
+cv2.createTrackbar('Steering_sensitivity', SLIDER_WINDOW_NAME, steer_sensitivity_default, steer_sensitivity_max, callback)
+cv2.createTrackbar('Steering_value', SLIDER_WINDOW_NAME, steer_straight, steer_right, callback)
+cv2.createTrackbar('Throttle_mode', SLIDER_WINDOW_NAME, zero_throttle_mode, error_throttle_mode, callback)
+cv2.createTrackbar('Throttle_value', SLIDER_WINDOW_NAME, throttle_neutral, throttle_forward, callback)
 
 class Calibration:
     def __init__(self):
@@ -110,29 +110,29 @@ class Calibration:
 
     def live_calibration_values(self,data):
         # get trackbar positions
-        lowH = cv2.getTrackbarPos('lowH', 'sliders')
-        highH = cv2.getTrackbarPos('highH', 'sliders')
-        lowS = cv2.getTrackbarPos('lowS', 'sliders')
-        highS = cv2.getTrackbarPos('highS', 'sliders')
-        lowV = cv2.getTrackbarPos('lowV', 'sliders')
-        highV = cv2.getTrackbarPos('highV', 'sliders')
-        min_width = cv2.getTrackbarPos('min_width', 'sliders')
-        max_width = cv2.getTrackbarPos('max_width', 'sliders')
+        lowH = cv2.getTrackbarPos('lowH', SLIDER_WINDOW_NAME)
+        highH = cv2.getTrackbarPos('highH', SLIDER_WINDOW_NAME)
+        lowS = cv2.getTrackbarPos('lowS', SLIDER_WINDOW_NAME)
+        highS = cv2.getTrackbarPos('highS', SLIDER_WINDOW_NAME)
+        lowV = cv2.getTrackbarPos('lowV', SLIDER_WINDOW_NAME)
+        highV = cv2.getTrackbarPos('highV', SLIDER_WINDOW_NAME)
+        min_width = cv2.getTrackbarPos('min_width', SLIDER_WINDOW_NAME)
+        max_width = cv2.getTrackbarPos('max_width', SLIDER_WINDOW_NAME)
         
-        number_of_lines = cv2.getTrackbarPos('number_of_lines', 'sliders')
-        error_threshold = float(cv2.getTrackbarPos('error_threshold', 'sliders')/100)
+        number_of_lines = cv2.getTrackbarPos('number_of_lines', SLIDER_WINDOW_NAME)
+        error_threshold = float(cv2.getTrackbarPos('error_threshold', SLIDER_WINDOW_NAME)/100)
 
-        inverted_filter = cv2.getTrackbarPos('Inverted_filter', 'sliders')
+        inverted_filter = cv2.getTrackbarPos('Inverted_filter', SLIDER_WINDOW_NAME)
 
-        crop_width_percent = cv2.getTrackbarPos('frame_width', 'sliders')
-        rows_to_watch_percent = cv2.getTrackbarPos('rows_to_watch', 'sliders')
-        rows_offset_percent = cv2.getTrackbarPos('rows_offset', 'sliders')
+        crop_width_percent = cv2.getTrackbarPos('frame_width', SLIDER_WINDOW_NAME)
+        rows_to_watch_percent = cv2.getTrackbarPos('rows_to_watch', SLIDER_WINDOW_NAME)
+        rows_offset_percent = cv2.getTrackbarPos('rows_offset', SLIDER_WINDOW_NAME)
 
-        steer_input = cv2.getTrackbarPos('Steering_value', 'sliders')
-        Steering_sensitivity = float(cv2.getTrackbarPos('Steering_sensitivity', 'sliders')/100)
+        steer_input = cv2.getTrackbarPos('Steering_value', SLIDER_WINDOW_NAME)
+        Steering_sensitivity = float(cv2.getTrackbarPos('Steering_sensitivity', SLIDER_WINDOW_NAME)/100)
 
-        Throttle_mode = cv2.getTrackbarPos('Throttle_mode', 'sliders')
-        throttle_input = cv2.getTrackbarPos('Throttle_value', 'sliders')
+        Throttle_mode = cv2.getTrackbarPos('Throttle_mode', SLIDER_WINDOW_NAME)
+        throttle_input = cv2.getTrackbarPos('Throttle_value', SLIDER_WINDOW_NAME)
 
         # Setting throttle and steering values
         if Throttle_mode == 0:
