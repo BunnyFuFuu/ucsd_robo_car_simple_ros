@@ -18,7 +18,9 @@ MASK_WINDOW_NAME = 'mask'
 THR_STR_WINDOW_NAME = 'throttle_and_steering'
 
 cv2.namedWindow(IMG_WINDOW_NAME)
-
+cv2.namedWindow(BW_WINDOW_NAME)
+cv2.namedWindow(MASK_WINDOW_NAME)
+cv2.namedWindow(THR_STR_WINDOW_NAME)
 
 def callback(x):
     pass
