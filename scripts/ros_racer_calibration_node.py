@@ -12,7 +12,9 @@ CAMERA_TOPIC_NAME = 'camera_rgb'
 STEERING_TOPIC_NAME = '/steering'
 THROTTLE_TOPIC_NAME = '/throttle'
 
-cv2.namedWindow('sliders')
+SLIDER_WINDOW_NAME = 'img'
+
+cv2.namedWindow(SLIDER_WINDOW_NAME)
 
 
 def callback(x):
