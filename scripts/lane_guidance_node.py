@@ -55,24 +55,18 @@ class PathPlanner:
         rospy.on_shutdown(self.clean_shutdown)
 
     def clean_shutdown(self):
-        rospy.loginfo("Shutting Down...")
+        print("Shutting Down...")
         self.throttle_float.data = self.zero_throttle
         self.throttle_publisher.publish(self.throttle_float)
-        rospy.loginfo("Shut down complete")
+        print("Shut down complete")
 
 
 def main():
     path_planner = PathPlanner()
     rate = rospy.Rate(15)
-    try:
-        while not rospy.is_shutdown():
-            rospy.spin()
-            rate.sleep()
-    except KeyboardInterrupt:
-        rospy.loginfo("Shutting Down...")
-        path_planner.throttle_float.data = path_planner.zero_throttle
-        path_planner.throttle_publisher.publish(path_planner.throttle_float)
-        rospy.loginfo("Shut down complete")
+    while not rospy.is_shutdown():
+        rospy.spin()
+        rate.sleep()
 
 
 if __name__ == '__main__':
