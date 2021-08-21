@@ -21,7 +21,7 @@ mid_y = Int32()
 class LaneDetection:
     def __init__(self):
         # Initialize node and create publishers/subscribers
-        self.init_node = rospy.init_node(LANE_DETECTION_NODE_NAME, disable_signals=True, anonymous=False)
+        self.init_node = rospy.init_node(LANE_DETECTION_NODE_NAME, anonymous=False)
         self.camera_subscriber = rospy.Subscriber(CAMERA_TOPIC_NAME, Image, self.locate_centroid)
         self.centroid_error_publisher = rospy.Publisher(CENTROID_TOPIC_NAME, Float32, queue_size=1)
         self.centroid_error = Float32()
