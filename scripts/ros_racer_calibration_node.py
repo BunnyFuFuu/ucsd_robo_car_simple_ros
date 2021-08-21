@@ -12,9 +12,12 @@ CAMERA_TOPIC_NAME = 'camera_rgb'
 STEERING_TOPIC_NAME = '/steering'
 THROTTLE_TOPIC_NAME = '/throttle'
 
-SLIDER_WINDOW_NAME = 'img'
+IMG_WINDOW_NAME = 'img'
+BW_WINDOW_NAME = 'blackAndWhiteImage'
+MASK_WINDOW_NAME = 'mask'
+THR_STR_WINDOW_NAME = 'throttle_and_steering'
 
-cv2.namedWindow(SLIDER_WINDOW_NAME)
+cv2.namedWindow(IMG_WINDOW_NAME)
 
 
 def callback(x):
@@ -35,6 +38,9 @@ lowS = 0
 highS = 255
 lowV = 0
 highV = 255
+
+glow = 0
+ghigh = 255
 
 not_inverted = 0
 inverted = 1
@@ -70,28 +76,30 @@ zero_error_throttle_mode = 1
 error_throttle_mode = 2
 
 
-cv2.createTrackbar('lowH', SLIDER_WINDOW_NAME, lowH, highH, callback)
-cv2.createTrackbar('highH', SLIDER_WINDOW_NAME, highH, highH, callback)
-cv2.createTrackbar('lowS', SLIDER_WINDOW_NAME, lowS, highS, callback)
-cv2.createTrackbar('highS', SLIDER_WINDOW_NAME, highS, highS, callback)
-cv2.createTrackbar('lowV', SLIDER_WINDOW_NAME, lowV, highV, callback)
-cv2.createTrackbar('highV', SLIDER_WINDOW_NAME, highV, highV, callback)
+cv2.createTrackbar('lowH', MASK_WINDOW_NAME , lowH, highH, callback)
+cv2.createTrackbar('highH', MASK_WINDOW_NAME , highH, highH, callback)
+cv2.createTrackbar('lowS', MASK_WINDOW_NAME , lowS, highS, callback)
+cv2.createTrackbar('highS', MASK_WINDOW_NAME , highS, highS, callback)
+cv2.createTrackbar('lowV', MASK_WINDOW_NAME , lowV, highV, callback)
+cv2.createTrackbar('highV', MASK_WINDOW_NAME , highV, highV, callback)
 
-cv2.createTrackbar('Inverted_filter', SLIDER_WINDOW_NAME, not_inverted, inverted, callback)
 
-cv2.createTrackbar('min_width', SLIDER_WINDOW_NAME, min_width, max_width, callback)
-cv2.createTrackbar('max_width', SLIDER_WINDOW_NAME, max_width, max_width, callback)
-cv2.createTrackbar('number_of_lines', SLIDER_WINDOW_NAME, max_number_of_lines, max_number_of_lines, callback)
-cv2.createTrackbar('error_threshold', SLIDER_WINDOW_NAME, max_error_threshold, max_error_threshold, callback)
+cv2.createTrackbar('gray_thresh', BW_WINDOW_NAME , glow, ghigh, callback)
+cv2.createTrackbar('Inverted_filter', BW_WINDOW_NAME , not_inverted, inverted, callback)
 
-cv2.createTrackbar('frame_width', SLIDER_WINDOW_NAME, default_frame_width, max_frame_width, callback)
-cv2.createTrackbar('rows_to_watch', SLIDER_WINDOW_NAME, default_min_rows, max_rows, callback)
-cv2.createTrackbar('rows_offset', SLIDER_WINDOW_NAME, default_min_offset, max_offset, callback)
+cv2.createTrackbar('min_width', IMG_WINDOW_NAME, min_width, max_width, callback)
+cv2.createTrackbar('max_width', IMG_WINDOW_NAME, max_width, max_width, callback)
+cv2.createTrackbar('number_of_lines', IMG_WINDOW_NAME, max_number_of_lines, max_number_of_lines, callback)
+cv2.createTrackbar('error_threshold', IMG_WINDOW_NAME, max_error_threshold, max_error_threshold, callback)
 
-cv2.createTrackbar('Steering_sensitivity', SLIDER_WINDOW_NAME, steer_sensitivity_default, steer_sensitivity_max, callback)
-cv2.createTrackbar('Steering_value', SLIDER_WINDOW_NAME, steer_straight, steer_right, callback)
-cv2.createTrackbar('Throttle_mode', SLIDER_WINDOW_NAME, zero_throttle_mode, error_throttle_mode, callback)
-cv2.createTrackbar('Throttle_value', SLIDER_WINDOW_NAME, throttle_neutral, throttle_forward, callback)
+cv2.createTrackbar('frame_width', IMG_WINDOW_NAME, default_frame_width, max_frame_width, callback)
+cv2.createTrackbar('rows_to_watch', IMG_WINDOW_NAME, default_min_rows, max_rows, callback)
+cv2.createTrackbar('rows_offset', IMG_WINDOW_NAME, default_min_offset, max_offset, callback)
+
+cv2.createTrackbar('Steering_sensitivity', THR_STR_WINDOW_NAME, steer_sensitivity_default, steer_sensitivity_max, callback)
+cv2.createTrackbar('Steering_value', THR_STR_WINDOW_NAME, steer_straight, steer_right, callback)
+cv2.createTrackbar('Throttle_mode', THR_STR_WINDOW_NAME, zero_throttle_mode, error_throttle_mode, callback)
+cv2.createTrackbar('Throttle_value', THR_STR_WINDOW_NAME, throttle_neutral, throttle_forward, callback)
 
 class Calibration:
     def __init__(self):
@@ -110,29 +118,32 @@ class Calibration:
 
     def live_calibration_values(self,data):
         # get trackbar positions
-        lowH = cv2.getTrackbarPos('lowH', SLIDER_WINDOW_NAME)
-        highH = cv2.getTrackbarPos('highH', SLIDER_WINDOW_NAME)
-        lowS = cv2.getTrackbarPos('lowS', SLIDER_WINDOW_NAME)
-        highS = cv2.getTrackbarPos('highS', SLIDER_WINDOW_NAME)
-        lowV = cv2.getTrackbarPos('lowV', SLIDER_WINDOW_NAME)
-        highV = cv2.getTrackbarPos('highV', SLIDER_WINDOW_NAME)
-        min_width = cv2.getTrackbarPos('min_width', SLIDER_WINDOW_NAME)
-        max_width = cv2.getTrackbarPos('max_width', SLIDER_WINDOW_NAME)
+        lowH = cv2.getTrackbarPos('lowH', MASK_WINDOW_NAME)
+        highH = cv2.getTrackbarPos('highH', MASK_WINDOW_NAME)
+        lowS = cv2.getTrackbarPos('lowS', MASK_WINDOW_NAME)
+        highS = cv2.getTrackbarPos('highS', MASK_WINDOW_NAME)
+        lowV = cv2.getTrackbarPos('lowV', MASK_WINDOW_NAME)
+        highV = cv2.getTrackbarPos('highV', MASK_WINDOW_NAME)
+        min_width = cv2.getTrackbarPos('min_width', IMG_WINDOW_NAME)
+        max_width = cv2.getTrackbarPos('max_width', IMG_WINDOW_NAME)
+
+        gray_thresh = cv2.getTrackbarPos('gray_thresh', BW_WINDOW_NAME)
+
         
-        number_of_lines = cv2.getTrackbarPos('number_of_lines', SLIDER_WINDOW_NAME)
-        error_threshold = float(cv2.getTrackbarPos('error_threshold', SLIDER_WINDOW_NAME)/100)
+        number_of_lines = cv2.getTrackbarPos('number_of_lines', MASK_WINDOW_NAME)
+        error_threshold = float(cv2.getTrackbarPos('error_threshold', MASK_WINDOW_NAME)/100)
 
-        inverted_filter = cv2.getTrackbarPos('Inverted_filter', SLIDER_WINDOW_NAME)
+        inverted_filter = cv2.getTrackbarPos('Inverted_filter', IMG_WINDOW_NAME)
 
-        crop_width_percent = cv2.getTrackbarPos('frame_width', SLIDER_WINDOW_NAME)
-        rows_to_watch_percent = cv2.getTrackbarPos('rows_to_watch', SLIDER_WINDOW_NAME)
-        rows_offset_percent = cv2.getTrackbarPos('rows_offset', SLIDER_WINDOW_NAME)
+        crop_width_percent = cv2.getTrackbarPos('frame_width', IMG_WINDOW_NAME)
+        rows_to_watch_percent = cv2.getTrackbarPos('rows_to_watch', IMG_WINDOW_NAME)
+        rows_offset_percent = cv2.getTrackbarPos('rows_offset', IMG_WINDOW_NAME)
 
-        steer_input = cv2.getTrackbarPos('Steering_value', SLIDER_WINDOW_NAME)
-        Steering_sensitivity = float(cv2.getTrackbarPos('Steering_sensitivity', SLIDER_WINDOW_NAME)/100)
+        steer_input = cv2.getTrackbarPos('Steering_value', THR_STR_WINDOW_NAME)
+        Steering_sensitivity = float(cv2.getTrackbarPos('Steering_sensitivity', THR_STR_WINDOW_NAME)/100)
 
-        Throttle_mode = cv2.getTrackbarPos('Throttle_mode', SLIDER_WINDOW_NAME)
-        throttle_input = cv2.getTrackbarPos('Throttle_value', SLIDER_WINDOW_NAME)
+        Throttle_mode = cv2.getTrackbarPos('Throttle_mode', THR_STR_WINDOW_NAME)
+        throttle_input = cv2.getTrackbarPos('Throttle_value', THR_STR_WINDOW_NAME)
 
         # Setting throttle and steering values
         if Throttle_mode == 0:
@@ -277,11 +288,11 @@ class Calibration:
             pass
 
         # plotting results
-        cv2.imshow('img', img)
-        cv2.imshow('mask', mask)
-        cv2.imshow('bitwise_mask', bitwise_mask)
-        cv2.imshow('gray', gray)
-        cv2.imshow('blackAndWhiteImage', blackAndWhiteImage)
+        cv2.imshow(IMG_WINDOW_NAME, img)
+        cv2.imshow(MASK_WINDOW_NAME, mask)
+        # cv2.imshow('bitwise_mask', bitwise_mask)
+        # cv2.imshow('gray', gray)
+        cv2.imshow(BW_WINDOW_NAME, blackAndWhiteImage)
         cv2.waitKey(1)
 
         # Write files to yaml file for storage
