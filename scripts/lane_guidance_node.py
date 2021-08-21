@@ -2,14 +2,14 @@
 import rospy
 from std_msgs.msg import Float32, Int32, Int32MultiArray
 
-
 LANE_GUIDANCE_NODE_NAME = 'lane_guidance_node'
 STEERING_TOPIC_NAME = '/steering'
 THROTTLE_TOPIC_NAME = '/throttle'
 CENTROID_TOPIC_NAME = '/centroid'
 
+
 class PathPlanner:
-     def __init__(self):
+    def __init__(self):
         # Initialize node and create publishers/subscribers
         self.init_node = rospy.init_node(LANE_GUIDANCE_NODE_NAME, anonymous=False)
         self.steering_publisher = rospy.Publisher(STEERING_TOPIC_NAME, Float32, queue_size=1)
@@ -32,11 +32,11 @@ class PathPlanner:
         #     f'\nerror_throttle: {self.error_throttle}'
         #     f'\nerror_threshold: {self.error_threshold}')
 
-    def controller(self, msg):
+    def controller(self, data):
         # try:
         kp = self.steering_sensitivity
         error_x = data.data
-        self.get_logger().info(f"{error_x}")
+        rospy.loginfo(f"{error_x}")
         if error_x <= self.error_threshold:
             throttle_float = self.no_error_throttle
         else:
@@ -56,12 +56,14 @@ class PathPlanner:
         #     self.throttle_publisher.data = self.zero_throttle
         #     self.throttle_publisher.publish(self.throttle_float)
 
+
 def main():
     path_planner = PathPlanner()
     rate = rospy.Rate(15)
     while not rospy.is_shutdown():
         rospy.spin()
         rate.sleep()
+
 
 if __name__ == '__main__':
     main()
