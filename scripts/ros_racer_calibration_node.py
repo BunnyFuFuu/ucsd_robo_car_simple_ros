@@ -128,7 +128,7 @@ class Calibration:
         highV = cv2.getTrackbarPos('highV', MASK_WINDOW_NAME)
 
         gray_thresh = cv2.getTrackbarPos('gray_thresh', BW_WINDOW_NAME)
-        inverted_filter = cv2.getTrackbarPos('Inverted_filter', MASK_WINDOW_NAME)
+        inverted_filter = cv2.getTrackbarPos('Inverted_filter', BW_WINDOW_NAME)
 
         min_width = cv2.getTrackbarPos('min_width', IMG_WINDOW_NAME)
         max_width = cv2.getTrackbarPos('max_width', IMG_WINDOW_NAME)
