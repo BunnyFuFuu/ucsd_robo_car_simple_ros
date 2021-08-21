@@ -300,6 +300,7 @@ class Calibration:
                 f"Saturation_high : {highS} \n"
                 f"Value_low : {lowV} \n"
                 f"Value_high : {highV} \n"
+                f"gray_thresh : {gray_thresh} \n"
                 f"number_of_lines : {number_of_lines} \n"
                 f"error_threshold : {error_threshold} \n"
                 f"Width_min : {min_width} \n"
