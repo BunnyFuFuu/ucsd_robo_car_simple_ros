@@ -63,7 +63,7 @@ def main():
     while not rospy.is_shutdown():
         rospy.spin()
         rate.sleep()
-    path_planner.throttle_publisher.publish(path_planner.)
+    # path_planner.throttle_publisher.publish(path_planner.)
 
 
 if __name__ == '__main__':
