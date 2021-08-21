@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 import rospy
 import cv2
+from cv_bridge import CvBridge
 import numpy as np
 from std_msgs.msg import Int32, Int32MultiArray, Float32
 from sensor_msgs.msg import Image
@@ -23,6 +24,7 @@ class LaneDetection:
         self.init_node = rospy.init_node(LANE_DETECTION_NODE_NAME, anonymous=False)
         self.camera_subscriber = rospy.Subscriber(CAMERA_TOPIC_NAME, Image, self.locate_centroid)
         self.centroid_error_publisher = rospy.Publisher(CENTROID_TOPIC_NAME, Float32, queue_size=1)
+        self.bridge = CvBridge()
 
         # Getting ROS parameters set from calibration Node
         self.Hue_low = rospy.get_param('Hue_low')
