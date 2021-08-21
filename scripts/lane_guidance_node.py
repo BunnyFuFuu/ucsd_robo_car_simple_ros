@@ -55,8 +55,11 @@ class PathPlanner:
         rospy.on_shutdown(self.clean_shutdown)
 
     def clean_shutdown(self):
+        rospy.loginfo("Shutting Down...")
         self.throttle_float.data = self.zero_throttle
         self.throttle_publisher.publish(self.throttle_float)
+        self.cleanup
+        rospy.loginfo("Shut down complete")
 
 
 def main():
