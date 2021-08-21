@@ -4,6 +4,7 @@ Saturation_low : 72
 Saturation_high : 255
 Value_low : 124
 Value_high : 255
+gray_thresh : 20
 number_of_lines : 100
 error_threshold : 0.18
 Width_min : 10
