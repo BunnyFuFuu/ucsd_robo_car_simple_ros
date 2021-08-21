@@ -177,7 +177,7 @@ class LaneDetection:
             centers = []
             cx_list = []
             cy_list = []
-            error_list = [0] * self.max_num_lines_detected
+            error_list = [0] * self.number_of_lines
         except ValueError:
             pass
 
