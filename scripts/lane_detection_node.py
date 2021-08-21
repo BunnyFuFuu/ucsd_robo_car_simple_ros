@@ -114,7 +114,7 @@ class LaneDetection:
         end_point_thresh_neg = (start_point_thresh_neg_x, int(self.bottom_height))
 
         # plotting contours and their centroids
-        for contour in contours:
+        for contour in contours[:self.number_of_lines]:
             x, y, w, h = cv2.boundingRect(contour)
             if self.min_width < w < self.max_width:
                 try:
@@ -177,7 +177,8 @@ class LaneDetection:
             centers = []
             cx_list = []
             cy_list = []
-            error_list = [0] * self.number_of_lines
+            # error_list = [0] * self.number_of_lines
+            error_list = []
         except ValueError:
             pass
 
