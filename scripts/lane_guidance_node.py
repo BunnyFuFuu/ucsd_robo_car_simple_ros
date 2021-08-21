@@ -11,7 +11,7 @@ CENTROID_TOPIC_NAME = '/centroid'
 class PathPlanner:
     def __init__(self):
         # Initialize node and create publishers/subscribers
-        self.init_node = rospy.init_node(LANE_GUIDANCE_NODE_NAME, anonymous=False)
+        self.init_node = rospy.init_node(LANE_GUIDANCE_NODE_NAME, disable_signals=True, anonymous=False)
         self.steering_publisher = rospy.Publisher(STEERING_TOPIC_NAME, Float32, queue_size=1)
         self.throttle_publisher = rospy.Publisher(THROTTLE_TOPIC_NAME, Float32, queue_size=1)
         self.steering_float = Float32()
