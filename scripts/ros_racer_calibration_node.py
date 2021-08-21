@@ -126,24 +126,20 @@ class Calibration:
         highS = cv2.getTrackbarPos('highS', MASK_WINDOW_NAME)
         lowV = cv2.getTrackbarPos('lowV', MASK_WINDOW_NAME)
         highV = cv2.getTrackbarPos('highV', MASK_WINDOW_NAME)
-        min_width = cv2.getTrackbarPos('min_width', IMG_WINDOW_NAME)
-        max_width = cv2.getTrackbarPos('max_width', IMG_WINDOW_NAME)
 
         gray_thresh = cv2.getTrackbarPos('gray_thresh', BW_WINDOW_NAME)
+        inverted_filter = cv2.getTrackbarPos('Inverted_filter', MASK_WINDOW_NAME)
 
-        
-        number_of_lines = cv2.getTrackbarPos('number_of_lines', MASK_WINDOW_NAME)
+        min_width = cv2.getTrackbarPos('min_width', IMG_WINDOW_NAME)
+        max_width = cv2.getTrackbarPos('max_width', IMG_WINDOW_NAME)
+        number_of_lines = cv2.getTrackbarPos('number_of_lines', IMG_WINDOW_NAME)
         error_threshold = float(cv2.getTrackbarPos('error_threshold', IMG_WINDOW_NAME)/100)
-
-        inverted_filter = cv2.getTrackbarPos('Inverted_filter', IMG_WINDOW_NAME)
-
         crop_width_percent = cv2.getTrackbarPos('frame_width', IMG_WINDOW_NAME)
         rows_to_watch_percent = cv2.getTrackbarPos('rows_to_watch', IMG_WINDOW_NAME)
         rows_offset_percent = cv2.getTrackbarPos('rows_offset', IMG_WINDOW_NAME)
 
         steer_input = cv2.getTrackbarPos('Steering_value', THR_STR_WINDOW_NAME)
         Steering_sensitivity = float(cv2.getTrackbarPos('Steering_sensitivity', THR_STR_WINDOW_NAME)/100)
-
         Throttle_mode = cv2.getTrackbarPos('Throttle_mode', THR_STR_WINDOW_NAME)
         throttle_input = cv2.getTrackbarPos('Throttle_value', THR_STR_WINDOW_NAME)
 
@@ -208,9 +204,8 @@ class Calibration:
         gray = cv2.cvtColor(bitwise_mask, cv2.COLOR_BGR2GRAY)
 
         # changing to black and white color space
-        gray_lower = 20
         gray_upper = 255
-        (dummy, blackAndWhiteImage) = cv2.threshold(gray, gray_lower, gray_upper, cv2.THRESH_BINARY)
+        (dummy, blackAndWhiteImage) = cv2.threshold(gray, gray_thresh, gray_upper, cv2.THRESH_BINARY)
         contours, dummy = cv2.findContours(blackAndWhiteImage, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
 
         centers = []
