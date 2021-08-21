@@ -15,6 +15,7 @@ camera_bottom_height : 92
 camera_left_width : 0
 camera_right_width : 160
 steering_sensitivity : 1.0
-no_error_throttle : -0.018000000000000016
-error_throttle : -0.018000000000000016
+no_error_throttle : -0.018
+error_throttle : -0.018
+zero_throttle : -0.018
 error_threshold : 0.18
