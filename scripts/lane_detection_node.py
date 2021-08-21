@@ -31,7 +31,7 @@ class LaneDetection:
         self.Saturation_high = rospy.get_param('Saturation_high')
         self.Value_low = rospy.get_param('Value_low')
         self.Value_high = rospy.get_param('Value_high')
-        self.gray_lower = rospy.get_param('gray_lower')
+        self.gray_lower = rospy.get_param('gray_thresh')
         self.inverted_filter = rospy.get_param('inverted_filter')
         self.number_of_lines = rospy.get_param('number_of_lines')
         self.error_threshold = rospy.get_param('error_threshold')
@@ -88,9 +88,9 @@ class LaneDetection:
         gray = cv2.cvtColor(bitwise_mask, cv2.COLOR_BGR2GRAY)
 
         # changing to black and white color space
-        gray_lower = 50
+        # gray_lower = 50
         gray_upper = 255
-        (dummy, blackAndWhiteImage) = cv2.threshold(gray, gray_lower, gray_upper, cv2.THRESH_BINARY)
+        (dummy, blackAndWhiteImage) = cv2.threshold(gray, self.gray_lower, gray_upper, cv2.THRESH_BINARY)
         contours, dummy = cv2.findContours(blackAndWhiteImage, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
 
         # Setting up data arrays
