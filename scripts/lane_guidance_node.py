@@ -33,28 +33,28 @@ class PathPlanner:
             f'\nerror_threshold: {self.error_threshold}')
 
     def controller(self, data):
-        # try:
-        kp = self.steering_sensitivity
-        error_x = data.data
-        rospy.loginfo(f"{error_x}")
-        if error_x <= self.error_threshold:
-            throttle_float = self.no_error_throttle
-        else:
-            throttle_float = self.error_throttle
-        steering_float = float(kp * error_x)
-        if steering_float < -1.0:
-            steering_float = -1.0
-        elif steering_float > 1.0:
-            steering_float = 1.0
-        else:
-            pass
-        self.steering_float.data = steering_float
-        self.throttle_float.data = throttle_float
-        self.steering_publisher.publish(self.steering_float)
-        self.throttle_publisher.publish(self.throttle_float)
-        # except KeyboardInterrupt:
-        #     self.throttle_publisher.data = self.zero_throttle
-        #     self.throttle_publisher.publish(self.throttle_float)
+        try:
+            kp = self.steering_sensitivity
+            error_x = data.data
+            rospy.loginfo(f"{error_x}")
+            if error_x <= self.error_threshold:
+                throttle_float = self.no_error_throttle
+            else:
+                throttle_float = self.error_throttle
+            steering_float = float(kp * error_x)
+            if steering_float < -1.0:
+                steering_float = -1.0
+            elif steering_float > 1.0:
+                steering_float = 1.0
+            else:
+                pass
+            self.steering_float.data = steering_float
+            self.throttle_float.data = throttle_float
+            self.steering_publisher.publish(self.steering_float)
+            self.throttle_publisher.publish(self.throttle_float)
+        except KeyboardInterrupt:
+            self.throttle_publisher.data = self.zero_throttle
+            self.throttle_publisher.publish(self.throttle_float)
 
 
 def main():
