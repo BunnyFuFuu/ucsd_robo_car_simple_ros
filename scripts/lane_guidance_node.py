@@ -25,12 +25,12 @@ class PathPlanner:
         self.error_threshold = rospy.get_param('error_threshold')
         self.zero_throttle = rospy.get_param('zero_throttle')
 
-        # Display Parameters
-        rospy.loginfo(
-            f'\nsteering_sensitivity: {self.steering_sensitivity}'
-            f'\nno_error_throttle: {self.no_error_throttle}'
-            f'\nerror_throttle: {self.error_throttle}'
-            f'\nerror_threshold: {self.error_threshold}')
+        # # Display Parameters
+        # rospy.loginfo(
+        #     f'\nsteering_sensitivity: {self.steering_sensitivity}'
+        #     f'\nno_error_throttle: {self.no_error_throttle}'
+        #     f'\nerror_throttle: {self.error_throttle}'
+        #     f'\nerror_threshold: {self.error_threshold}')
 
     def controller(self, msg):
         try:
