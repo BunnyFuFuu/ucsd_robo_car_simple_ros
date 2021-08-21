@@ -32,7 +32,7 @@ class PathPlanner:
             f'\nerror_throttle: {self.error_throttle}'
             f'\nerror_threshold: {self.error_threshold}')
 
-    def controller(self,msg):
+    def controller(self, msg):
         try:
             kp = self.steering_sensitivity
             error_x = data.data
