@@ -28,7 +28,7 @@ def callback(data):
 
 
 def listener():
-    rospy.init_node(STEERING_NODE_NAME, anonymous=False)
+    rospy.init_node(STEERING_NODE_NAME, disable_signals=True, anonymous=False)
     rospy.Subscriber(STEERING_TOPIC_NAME, Float32, callback)
     rospy.spin()
 

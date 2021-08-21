@@ -26,7 +26,7 @@ def callback(data):
 
 
 def listener():
-    rospy.init_node(THROTTLE_NODE_NAME, anonymous=False)
+    rospy.init_node(THROTTLE_NODE_NAME, disable_signals=True, anonymous=False)
     rospy.Subscriber(THROTTLE_TOPIC_NAME, Float32, callback)
     rospy.spin()
 
