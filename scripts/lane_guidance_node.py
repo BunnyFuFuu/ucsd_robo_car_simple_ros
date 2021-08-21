@@ -63,7 +63,10 @@ def main():
     while not rospy.is_shutdown():
         rospy.spin()
         rate.sleep()
-    # path_planner.throttle_publisher.publish(path_planner.)
+    rospy.loginfo("Shutting Down...")
+    path_planner.throttle_float.data = path_planner.zero_throttle
+    path_planner.throttle_publisher.publish(path_planner.throttle_float)
+    rospy.loginfo("Shut down complete")
 
 
 if __name__ == '__main__':
