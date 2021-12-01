@@ -41,7 +41,7 @@ class PathPlanner:
             throttle_float = self.no_error_throttle
         else:
             throttle_float = self.error_throttle
-        steering_float = float(kp * error_x)
+        steering_float = -float(kp * error_x)
         if steering_float < -1.0:
             steering_float = -1.0
         elif steering_float > 1.0:
