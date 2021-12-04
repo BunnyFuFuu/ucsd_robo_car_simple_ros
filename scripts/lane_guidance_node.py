@@ -50,7 +50,8 @@ class PathPlanner:
         else:
             throttle_float = self.error_throttle
         decay = 0.8**(rospy.get_time() - self.last_detected)
-        steering_float = -float(kp * error_x) + (kp * 0.5 * self.stored_det[1] * decay)
+        obstacle_error = self.stored_det[2] * self.stored_det[1] * decay
+        steering_float = -float(kp * error_x) + float(kp * 0.5 * obstacle_error)
         if steering_float < -1.0:
             steering_float = -1.0
         elif steering_float > 1.0:

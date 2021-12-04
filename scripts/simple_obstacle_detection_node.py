@@ -47,7 +47,7 @@ class ObstacleDetection:
 
         if max_distance_tolerance >= abs(min_distance) >= min_distance_tolerance:
             angle_rad = (min_angle * math.pi) / 180
-            normalized_angle = round(math.cos(angle_rad))
+            normalized_angle = round(math.sin(angle_rad))
             obstacle_detected = 1.0
 
             # Publish ROS message
