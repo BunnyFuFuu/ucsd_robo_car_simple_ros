@@ -36,7 +36,7 @@ class ObstacleDetection:
         total_number_of_scans = len(data.ranges)
         scans_per_degree = int(total_number_of_scans/self.viewing_angle)
 
-        angle_values = [0, 45, 67.5, 90, 315, 292.5, 270]
+        angle_values = [0, 11.5, 22.5, 33.5, 45, 56.5, 67.5, 78.5, 90, 348.5, 337.5, 326.5, 315, 303.5, 292.5, 281.5, 270]
         range_values = []
         for angle in angle_values:
             range_values.append(data.ranges[angle*scans_per_degree])
@@ -66,7 +66,7 @@ class ObstacleDetection:
             self.obstacle_info.append(min_distance_data)
             self.obstacle_info.append(normalized_angle)
             self.obstacle_info.append(obstacle_detected)
-            self.obstacle_pub.publish(self.obstacle_detected)
+            self.obstacle_pub.publish(self.obstacle_info)
 
 
 def main():

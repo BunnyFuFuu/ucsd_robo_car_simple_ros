@@ -1,12 +1,12 @@
 #!/usr/bin/python3
 import rospy
-from std_msgs.msg import Float32, Int32, Int32MultiArray
+from std_msgs.msg import Float32, Int32, Int32MultiArray, Float32MultiArray
 
 LANE_GUIDANCE_NODE_NAME = 'lane_guidance_node'
 STEERING_TOPIC_NAME = '/steering'
 THROTTLE_TOPIC_NAME = '/throttle'
 CENTROID_TOPIC_NAME = '/centroid'
-
+OBS_DETECTION_TOPIC_NAME = '/obstacle_detection'
 
 class PathPlanner:
     def __init__(self):
@@ -17,6 +17,10 @@ class PathPlanner:
         self.steering_float = Float32()
         self.throttle_float = Float32()
         self.centroid_subscriber = rospy.Subscriber(CENTROID_TOPIC_NAME, Float32, self.controller)
+        self.obstacle_detection_subscriber = rospy.Subscriber(OBS_DETECTION_TOPIC_NAME, Float32MultiArray, self.det_handler)
+
+        self.stored_det = [-1.0, -1.0, 0.0] 
+        self.last_detected = rospy.get_time()
 
         # Getting ROS parameters set from calibration Node
         self.steering_sensitivity = rospy.get_param('steering_sensitivity')
@@ -32,6 +36,10 @@ class PathPlanner:
             f'\nerror_throttle: {self.error_throttle}'
             f'\nerror_threshold: {self.error_threshold}')
 
+    def det_handler(self, data):
+        self.stored_det = data.data
+        self.last_detected = rospy.get_time()
+
     def controller(self, data):
         # try:
         kp = self.steering_sensitivity
@@ -41,7 +49,8 @@ class PathPlanner:
             throttle_float = self.no_error_throttle
         else:
             throttle_float = self.error_throttle
-        steering_float = -float(kp * error_x)
+        decay = 0.8**(rospy.get_time() - self.last_detected)
+        steering_float = -float(kp * error_x) + (kp * 0.5 * self.stored_det[1] * decay)
         if steering_float < -1.0:
             steering_float = -1.0
         elif steering_float > 1.0:
