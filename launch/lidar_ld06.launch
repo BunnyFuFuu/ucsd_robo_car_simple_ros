@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <launch>
-   <arg name="config_lidar_ld06" default="$(find ucsd_robo_car_simple_ros`)/config/config_lidar_ld06.yaml"/>
+   <arg name="config_lidar_ld06" default="$(find ucsd_robo_car_simple_ros)/config/config_lidar_ld06.yaml"/>
    <node name="LD06" pkg="ldlidar" type="ldlidar" args="LD06" output="screen" >
       <rosparam file="$(arg config_lidar_ld06)" command="load"/>
  </node>
