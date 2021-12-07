@@ -107,7 +107,7 @@ class LaneDetection:
 
         start_point_thresh_pos_x = int((self.image_width/2)*(1-self.error_threshold))
         start_point_thresh_neg_x = int((self.image_width/2)*(1+self.error_threshold))
-        
+
         start_point_thresh_pos = (start_point_thresh_pos_x,0)
         end_point_thresh_pos = (start_point_thresh_pos_x, int(self.bottom_height))
 
@@ -148,7 +148,7 @@ class LaneDetection:
                     pixel_error = int((self.image_width/2)*(1-error_x))
                     mid_x, mid_y = pixel_error, int((image_height/2))
                     rospy.loginfo(f"straight curve: {error_x}, {error_list}")
-                else: 
+                else:
                     for error in error_list:
                         if abs(error) < self.error_threshold:
                             error = 1
@@ -158,7 +158,7 @@ class LaneDetection:
                     error_x_index = error_list.index(min(error_list, key=abs))
                     mid_x, mid_y = cx_list[error_x_index], cy_list[error_x_index]
                     rospy.loginfo(f"curvy road: {error_x}, {error_list}")
-                
+
                 cv2.circle(img, (mid_x, mid_y), 7, (255, 0, 0), -1)
                 start_point_error = (int(image_width/2), mid_y)
                 img = cv2.line(img, start_point_error, (mid_x, mid_y), (0,0,255), 4)
@@ -184,8 +184,8 @@ class LaneDetection:
             pass
 
         # plotting results
-        #cv2.imshow('img', img)
-        #cv2.imshow('blackAndWhiteImage', blackAndWhiteImage)
+        cv2.imshow('img', img)
+        cv2.imshow('blackAndWhiteImage', blackAndWhiteImage)
         cv2.waitKey(1)
 
 
