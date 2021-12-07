@@ -12,25 +12,25 @@ OBSTACLE_DETECTED_TOPIC_NAME = '/obstacle_detection'
 
 class ObstacleDetection:
     def __init__(self):
-        
-    self.init_node =rospy.init_node(OBSTACLE_DETECTION_NODE_NAME, anonymous=False)
-    self.sub = rospy.Subscriber(SUBSCRIBER_TOPIC_NAME, LaserScan, self.detect_obstacle)
-    self.obstacle_pub = rospy.Publisher(OBSTACLE_DETECTED_TOPIC_NAME, Float32MultiArray, queue_size=1)
-    self.obstacle_info = Float32MultiArray()
-    
-    # Lidar properties (needs to be updated to be ros parameters loaded from config depending on lidar brand)
-    self.viewing_angle = 360
 
-    # Obstacle distance limits (meters) (update/calibrate as needed)
-    self.max_distance_tolerance = 0.6
-    self.min_distance_tolerance = 0.2
+        self.init_node = rospy.init_node(OBSTACLE_DETECTION_NODE_NAME, anonymous=False)
+        self.sub = rospy.Subscriber(SUBSCRIBER_TOPIC_NAME, LaserScan, self.detect_obstacle)
+        self.obstacle_pub = rospy.Publisher(OBSTACLE_DETECTED_TOPIC_NAME, Float32MultiArray, queue_size=1)
+        self.obstacle_info = Float32MultiArray()
 
-    '''
-    For LD06
-    values at 0 degrees   ---> (straight)
-    values at 90 degrees  ---> (full right)
-    values at -90 degrees ---> (full left)
-    '''
+        # Lidar properties (needs to be updated to be ros parameters loaded from config depending on lidar brand)
+        self.viewing_angle = 360
+
+        # Obstacle distance limits (meters) (update/calibrate as needed)
+        self.max_distance_tolerance = 0.6
+        self.min_distance_tolerance = 0.2
+
+        '''
+        For LD06
+        values at 0 degrees   ---> (straight)
+        values at 90 degrees  ---> (full right)
+        values at -90 degrees ---> (full left)
+        '''
 
     def detect_obstacle(data):
         total_number_of_scans = len(data.ranges)
@@ -40,7 +40,7 @@ class ObstacleDetection:
         range_values = []
         for angle in angle_values:
             range_values.append(data.ranges[angle*scans_per_degree])
-        
+
         min_distance = min(range_values)
         min_angle_index = range_values.index(min(range_values))
         min_angle = angle_values[min_angle_index]
@@ -79,4 +79,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
