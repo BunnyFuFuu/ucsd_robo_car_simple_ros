@@ -32,7 +32,7 @@ class ObstacleDetection:
         values at -90 degrees ---> (full left)
         '''
 
-    def detect_obstacle(data):
+    def detect_obstacle(self,data):
         total_number_of_scans = len(data.ranges)
         scans_per_degree = int(total_number_of_scans/self.viewing_angle)
 
