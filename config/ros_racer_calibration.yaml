@@ -1,9 +1,9 @@
-Hue_low : 15
-Hue_high : 37
-Saturation_low : 114
-Saturation_high : 199
-Value_low : 114
-Value_high : 200
+Hue_low : 14
+Hue_high : 49
+Saturation_low : 49
+Saturation_high : 194
+Value_low : 113
+Value_high : 203
 gray_thresh : 0
 number_of_lines : 85
 error_threshold : 0.51
