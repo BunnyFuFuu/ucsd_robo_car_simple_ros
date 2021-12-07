@@ -16,5 +16,5 @@ camera_left_width : 160
 camera_right_width : 640
 steering_sensitivity : 1.0
 zero_throttle : 0.01
-no_error_throttle : 0.40
-error_throttle : 0.20
+no_error_throttle : 1.00
+error_throttle : 0.50
