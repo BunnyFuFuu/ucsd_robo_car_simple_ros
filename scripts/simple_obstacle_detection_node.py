@@ -52,11 +52,11 @@ class ObstacleDetection:
             obstacle_detected = 1.0
 
             # Publish ROS message
-            self.obstacle_info.append(min_distance)
-            self.obstacle_info.append(normalized_angle)
-            self.obstacle_info.append(obstacle_detected)
-            self.obstacle_pub.publish(self.obstacle_info)
-            rospy.loginfo("Obstacle Detected:" + str(self.obstacle_info))
+            obstacle_info.append(min_distance)
+            obstacle_info.append(normalized_angle)
+            obstacle_info.append(obstacle_detected)
+            self.obstacle_pub.publish(Float32MultiArray(data=obstacle_info))
+            rospy.loginfo("Obstacle Detected:" + str(obstacle_info))
 
         else:
             # nonsense values
@@ -65,11 +65,10 @@ class ObstacleDetection:
             obstacle_detected = 0.0
 
             # Publish ROS message
-            self.obstacle_info.append(self.min_distance_data)
-            self.obstacle_info.append(normalized_angle)
-            self.obstacle_info.append(obstacle_detected)
-            self.obstacle_pub.publish(self.obstacle_info)
-            print("No Object: " + str(self.obstacle_info))
+            obstacle_info.append(min_distance)
+            obstacle_info.append(normalized_angle)
+            obstacle_info.append(obstacle_detected)
+            self.obstacle_pub.publish(Float32MultiArray(data=obstacle_info))
 
 
 def main():
