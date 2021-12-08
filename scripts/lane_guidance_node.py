@@ -19,7 +19,7 @@ class PathPlanner:
         self.centroid_subscriber = rospy.Subscriber(CENTROID_TOPIC_NAME, Float32, self.controller)
         self.obstacle_detection_subscriber = rospy.Subscriber(OBS_DETECTION_TOPIC_NAME, Float32MultiArray, self.det_handler)
 
-        self.stored_det = [-1.0, -1.0, 0.0] 
+        self.stored_det = [-1.0, -1.0, 0.0]
         self.last_detected = rospy.get_time()
 
         # Getting ROS parameters set from calibration Node
@@ -50,7 +50,8 @@ class PathPlanner:
             throttle_float = self.error_throttle
         decay = 0.8**(rospy.get_time() - self.last_detected)
         obstacle_error = self.stored_det[2] * self.stored_det[1] * decay
-        rospy.loginfo(f"Obstacle error: {obstacle_error}")
+        rospy.loginfo(f'\nNOOOOO Obstacle error: {obstacle_error}')
+        print(f'Obstacle error: {obstacle_error}')
         #print("Obstacle error:" + str(obstacle_error))
         steering_float = -float(kp * error_x) + float(kp * 0.5 * obstacle_error)
         if steering_float < -1.0:
