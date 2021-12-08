@@ -56,7 +56,7 @@ class ObstacleDetection:
             obstacle_info.append(normalized_angle)
             obstacle_info.append(obstacle_detected)
             self.obstacle_pub.publish(Float32MultiArray(data=obstacle_info))
-            rospy.loginfo("Obstacle Detected:" + str(self.obstacle_info))
+            rospy.loginfo("Obstacle Detected:" + str(obstacle_info))
 
         else:
             # nonsense values
@@ -69,7 +69,7 @@ class ObstacleDetection:
             obstacle_info.append(normalized_angle)
             obstacle_info.append(obstacle_detected)
             self.obstacle_pub.publish(Float32MultiArray(data=obstacle_info))
-            print("No Object: " + str(self.obstacle_info))
+            print("No Object: " + str(obstacle_info))
 
 
 def main():
