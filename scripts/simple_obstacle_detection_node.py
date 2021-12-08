@@ -22,7 +22,7 @@ class ObstacleDetection:
         self.viewing_angle = 360
 
         # Obstacle distance limits (meters) (update/calibrate as needed)
-        self.max_distance_tolerance = 0.6
+        self.max_distance_tolerance = 1.2
         self.min_distance_tolerance = 0.15
 
         '''
