@@ -184,8 +184,8 @@ class LaneDetection:
             pass
 
         # plotting results
-        cv2.imshow('img', img)
-        cv2.imshow('blackAndWhiteImage', blackAndWhiteImage)
+        #cv2.imshow('img', img)
+        #cv2.imshow('blackAndWhiteImage', blackAndWhiteImage)
         cv2.waitKey(1)
 
 
