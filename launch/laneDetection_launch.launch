@@ -2,5 +2,5 @@
   <rosparam command="load" file="$(find ucsd_robo_car_simple_ros)/config/ros_racer_calibration.yaml" />
   <node name="camera_server" pkg="ucsd_robo_car_simple_ros" type="camera_server.py" />
   <node name="lane_detection_node" pkg="ucsd_robo_car_simple_ros" type="lane_detection_node.py" output="screen" />
-  <node name="lane_guidance_node" pkg="ucsd_robo_car_simple_ros" type="lane_guidance_node.py" />
+  <node name="lane_guidance_node" pkg="ucsd_robo_car_simple_ros" type="lane_guidance_node.py" output="screen"/>
 </launch>
