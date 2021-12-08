@@ -50,12 +50,12 @@ class PathPlanner:
         else:
             throttle_float = self.error_throttle
         decay = 0.8**(rospy.get_time() - self.last_detected)
-        obstacle_error = self.stored_det[2] * self.stored_det[1] * decay
+        obstacle_error = self.stored_det[2] * (self.stored_det[1]/abs(self.stored_det[1]) * ( (math.pi/2)-abs(self.stored_det[1]) )/(math.pi/2)
         # rospy.loginfo(f'\nNOOOOO Obstacle error: {obstacle_error}')
         print(f'Obstacle error: {obstacle_error}')
         print("From obs det:" + str(self.stored_det))
         #print("Obstacle error:" + str(obstacle_error))
-        steering_float = -float(kp * error_x) + float(kp * 0.5 * obstacle_error)
+        steering_float = -float(kp * error_x) + float(kp * obstacle_error)
         if steering_float < -1.0:
             steering_float = -1.0
         elif steering_float > 1.0:
