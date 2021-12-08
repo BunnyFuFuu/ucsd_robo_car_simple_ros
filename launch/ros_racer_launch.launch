@@ -1,6 +1,6 @@
 <launch>
   <include file="$(find ucsd_robo_car_simple_ros)/launch/throttle_and_steering_launch.launch"> </include>
   <include file="$(find ucsd_robo_car_simple_ros)/launch/laneDetection_launch.launch"> </include>
-  <include file="$(find ucsd_robo_car_simple_ros)/launch/lidar_rp.launch"> </include>
+  <include file="$(find ucsd_robo_car_simple_ros)/launch/lidar_ld06.launch"> </include>
   <include file="$(find ucsd_robo_car_simple_ros)/launch/simple_obstacle_detection_launch.launch"> </include>
 </launch>
