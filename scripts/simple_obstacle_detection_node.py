@@ -33,7 +33,7 @@ class ObstacleDetection:
         '''
 
     def detect_obstacle(self, data):
-        ropsy.loginfo("----  START PRINTING DEBUG MESSAGES  -----")
+        rospy.loginfo("----  START PRINTING DEBUG MESSAGES  -----")
         rospy.loginfo("angle_min:" + str(data.angle_min))
         rospy.loginfo("angle_max:" + str(data.angle_max))
         rospy.loginfo("angle_increment:" + str(data.angle_increment))
@@ -43,7 +43,7 @@ class ObstacleDetection:
         rospy.loginfo("range_max:" + str(data.range_max))
         rospy.loginfo("ranges:" + str(data.ranges))
         rospy.loginfo("intesnsities:" + str(data.intensities))
-        ropsy.loginfo("----  END PRINTING DEBUG MESSAGES  -----")
+        rospy.loginfo("----  END PRINTING DEBUG MESSAGES  -----")
         total_number_of_scans = len(data.ranges)
         scans_per_degree = int(total_number_of_scans/self.viewing_angle)
 
