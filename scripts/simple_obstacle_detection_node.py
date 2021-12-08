@@ -69,7 +69,6 @@ class ObstacleDetection:
             obstacle_info.append(normalized_angle)
             obstacle_info.append(obstacle_detected)
             self.obstacle_pub.publish(Float32MultiArray(data=obstacle_info))
-            print("No Object: " + str(obstacle_info))
 
 
 def main():
