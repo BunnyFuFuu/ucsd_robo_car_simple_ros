@@ -44,7 +44,7 @@ class ObstacleDetection:
         min_distance = min(range_values)
         min_angle_index = range_values.index(min(range_values))
         min_angle = angle_values[min_angle_index]
-        obstacle_info = Float32MultiArray()
+        obstacle_info = []
         #rospy.loginfo("Obstacle Detected:" + str(min_distance))
         if self.max_distance_tolerance >= abs(min_distance) >= self.min_distance_tolerance:
             angle_rad = (min_angle * math.pi) / 180
