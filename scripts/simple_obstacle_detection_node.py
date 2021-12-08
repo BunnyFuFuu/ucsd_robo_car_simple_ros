@@ -23,7 +23,7 @@ class ObstacleDetection:
 
         # Obstacle distance limits (meters) (update/calibrate as needed)
         self.max_distance_tolerance = 0.6
-        self.min_distance_tolerance = 0.2
+        self.min_distance_tolerance = 0.15
 
         '''
         For LD06
@@ -45,7 +45,7 @@ class ObstacleDetection:
         min_angle_index = range_values.index(min(range_values))
         min_angle = angle_values[min_angle_index]
 
-        if max_distance_tolerance >= abs(min_distance) >= min_distance_tolerance:
+        if self.max_distance_tolerance >= abs(min_distance) >= self.min_distance_tolerance:
             angle_rad = (min_angle * math.pi) / 180
             normalized_angle = round(math.sin(angle_rad))
             obstacle_detected = 1.0
@@ -55,6 +55,7 @@ class ObstacleDetection:
             self.obstacle_info.append(normalized_angle)
             self.obstacle_info.append(obstacle_detected)
             self.obstacle_pub.publish(self.obstacle_detected)
+            print("Obstacle Detected:" + str(self.obstacle_info))
 
         else:
             # nonsense values
@@ -67,6 +68,7 @@ class ObstacleDetection:
             self.obstacle_info.append(normalized_angle)
             self.obstacle_info.append(obstacle_detected)
             self.obstacle_pub.publish(self.obstacle_info)
+            print("No Object: " + str(self.obstacle_info))
 
 
 def main():

@@ -38,6 +38,7 @@ class PathPlanner:
     def det_handler(self, data):
         self.stored_det = data.data
         self.last_detected = rospy.get_time()
+        print("Ran the det_handler")
 
     def controller(self, data):
         # try:
