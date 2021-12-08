@@ -44,18 +44,18 @@ class ObstacleDetection:
         min_distance = min(range_values)
         min_angle_index = range_values.index(min(range_values))
         min_angle = angle_values[min_angle_index]
-        obstacle_info = []
-        rospy.loginfo("Obstacle Detected:" + str(min_distance))
+        self.obstacle_info = Float32MultiArray()
+        #rospy.loginfo("Obstacle Detected:" + str(min_distance))
         if self.max_distance_tolerance >= abs(min_distance) >= self.min_distance_tolerance:
             angle_rad = (min_angle * math.pi) / 180
             normalized_angle = round(math.sin(angle_rad))
             obstacle_detected = 1.0
 
             # Publish ROS message
-            obstacle_info.append(min_distance)
-            obstacle_info.append(normalized_angle)
-            obstacle_info.append(obstacle_detected)
-            self.obstacle_pub.publish(Float32MultiArray(data=obstacle_info))
+            self.obstacle_info.append(min_distance)
+            self.obstacle_info.append(normalized_angle)
+            self.obstacle_info.append(obstacle_detected)
+            self.obstacle_pub.publish(self.obstacle_info)
             rospy.loginfo("Obstacle Detected:" + str(self.obstacle_info))
 
         else:
@@ -65,10 +65,10 @@ class ObstacleDetection:
             obstacle_detected = 0.0
 
             # Publish ROS message
-            obstacle_info.append(min_distance)
-            obstacle_info.append(normalized_angle)
-            obstacle_info.append(obstacle_detected)
-            self.obstacle_pub.publish(Float32MultiArray(data=obstacle_info))
+            self.obstacle_info.append(self.min_distance_data)
+            self.obstacle_info.append(normalized_angle)
+            self.obstacle_info.append(obstacle_detected)
+            self.obstacle_pub.publish(self.obstacle_info)
             print("No Object: " + str(self.obstacle_info))
 
 
