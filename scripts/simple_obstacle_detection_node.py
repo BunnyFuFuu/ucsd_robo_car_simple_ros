@@ -39,7 +39,7 @@ class ObstacleDetection:
         angle_values = [0, 11.5, 22.5, 33.5, 45, 56.5, 67.5, 348.5, 337.5, 326.5, 315, 303.5, 292.5]
         range_values = []
         for angle in angle_values:
-            bs = data.ranges[rount(angle*scans_per_degree)]
+            bs = data.ranges[round(angle*scans_per_degree)]
             if self.max_distance_tolerance >= bs >= self.min_distance_tolerance:
                 range_values.append(data.ranges[round(angle*scans_per_degree)])
         print("Range values: " + str(range_values))
