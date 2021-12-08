@@ -33,17 +33,17 @@ class ObstacleDetection:
         '''
 
     def detect_obstacle(self, data):
-        rospy.loginfo("----  START PRINTING DEBUG MESSAGES  -----")
-        rospy.loginfo("angle_min:" + str(data.angle_min))
-        rospy.loginfo("angle_max:" + str(data.angle_max))
-        rospy.loginfo("angle_increment:" + str(data.angle_increment))
-        rospy.loginfo("time_increment:" + str(data.time_increment))
-        rospy.loginfo("scan_time:" + str(data.scan_time))
-        rospy.loginfo("range_min:" + str(data.range_min))
-        rospy.loginfo("range_max:" + str(data.range_max))
-        rospy.loginfo("ranges:" + str(data.ranges))
-        rospy.loginfo("intesnsities:" + str(data.intensities))
-        rospy.loginfo("----  END PRINTING DEBUG MESSAGES  -----")
+        # rospy.loginfo("----  START PRINTING DEBUG MESSAGES  -----")
+        # rospy.loginfo("angle_min:" + str(data.angle_min))
+        # rospy.loginfo("angle_max:" + str(data.angle_max))
+        # rospy.loginfo("angle_increment:" + str(data.angle_increment))
+        # rospy.loginfo("time_increment:" + str(data.time_increment))
+        # rospy.loginfo("scan_time:" + str(data.scan_time))
+        # rospy.loginfo("range_min:" + str(data.range_min))
+        # rospy.loginfo("range_max:" + str(data.range_max))
+        # rospy.loginfo("ranges:" + str(data.ranges))
+        # rospy.loginfo("intesnsities:" + str(data.intensities))
+        # rospy.loginfo("----  END PRINTING DEBUG MESSAGES  -----")
         total_number_of_scans = len(data.ranges)
         scans_per_degree = int(total_number_of_scans/self.viewing_angle)
 
@@ -63,6 +63,8 @@ class ObstacleDetection:
         obstacle_info = []
         #rospy.loginfo("Obstacle Detected:" + str(min_distance))
         if self.max_distance_tolerance >= abs(min_distance) >= self.min_distance_tolerance:
+            #make the angle nuegative if its on the right side
+            if min_angle > 180: min_angle = min_angle - 360
             angle_rad = (min_angle * math.pi) / 180
             normalized_angle = math.sin(angle_rad)
             obstacle_detected = 1.0
