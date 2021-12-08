@@ -47,8 +47,9 @@ class ObstacleDetection:
         total_number_of_scans = len(data.ranges)
         scans_per_degree = float(total_number_of_scans/self.viewing_angle)
 
-        angle_values = [0, 11.5, 22.5, 33.5, 45, 56.5, 67.5, 348.5, 337.5, 326.5, 315, 303.5, 292.5, 270, 225, 180, 135]
-        angle_values = [0,5,10,15,20,25,30,35,40,45,50,55,60,65,355,350,345,340,335,330,325,320,315,310,305,300]
+        #angle_values = [0, 11.5, 22.5, 33.5, 45, 56.5, 67.5, 348.5, 337.5, 326.5, 315, 303.5, 292.5, 270, 225, 180, 135]
+        #65 - -65 degrees
+        angle_values = [0,5,10,15,20,25,30,35,40,45,50,55,60,65,355,350,345,340,335,330,325,320,315,310,305,300,295]
         range_values = []
         for angle in angle_values:
             bs = data.ranges[round(angle*scans_per_degree)]
