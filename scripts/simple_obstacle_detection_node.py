@@ -65,7 +65,7 @@ class ObstacleDetection:
             obstacle_detected = 0.0
 
             # Publish ROS message
-            self.obstacle_info.append(self.min_distance_data)
+            self.obstacle_info.append(min_distance)
             self.obstacle_info.append(normalized_angle)
             self.obstacle_info.append(obstacle_detected)
             self.obstacle_pub.publish(self.obstacle_info)
