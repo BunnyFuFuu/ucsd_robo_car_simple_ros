@@ -16,7 +16,7 @@ class ObstacleDetection:
         self.init_node = rospy.init_node(OBSTACLE_DETECTION_NODE_NAME, anonymous=False)
         self.sub = rospy.Subscriber(SUBSCRIBER_TOPIC_NAME, LaserScan, self.detect_obstacle)
         self.obstacle_pub = rospy.Publisher(OBSTACLE_DETECTED_TOPIC_NAME, Float32MultiArray, queue_size=1)
-        self.obstacle_info = []
+        self.obstacle_info = Float32MultiArray()
 
         # Lidar properties (needs to be updated to be ros parameters loaded from config depending on lidar brand)
         self.viewing_angle = 360
@@ -44,7 +44,7 @@ class ObstacleDetection:
         min_distance = min(range_values)
         min_angle_index = range_values.index(min(range_values))
         min_angle = angle_values[min_angle_index]
-        self.obstacle_info = []
+        obstacle_info = []
         rospy.loginfo("Obstacle Detected:" + str(min_distance))
         if self.max_distance_tolerance >= abs(min_distance) >= self.min_distance_tolerance:
             angle_rad = (min_angle * math.pi) / 180
@@ -52,10 +52,10 @@ class ObstacleDetection:
             obstacle_detected = 1.0
 
             # Publish ROS message
-            self.obstacle_info.append(min_distance)
-            self.obstacle_info.append(normalized_angle)
-            self.obstacle_info.append(obstacle_detected)
-            self.obstacle_pub.publish(self.obstacle_info)
+            obstacle_info.append(min_distance)
+            obstacle_info.append(normalized_angle)
+            obstacle_info.append(obstacle_detected)
+            self.obstacle_pub.publish(Float32MultiArray(data=obstacle_info))
             rospy.loginfo("Obstacle Detected:" + str(self.obstacle_info))
 
         else:
@@ -65,10 +65,10 @@ class ObstacleDetection:
             obstacle_detected = 0.0
 
             # Publish ROS message
-            self.obstacle_info.append(min_distance)
-            self.obstacle_info.append(normalized_angle)
-            self.obstacle_info.append(obstacle_detected)
-            self.obstacle_pub.publish(self.obstacle_info)
+            obstacle_info.append(min_distance)
+            obstacle_info.append(normalized_angle)
+            obstacle_info.append(obstacle_detected)
+            self.obstacle_pub.publish(Float32MultiArray(data=obstacle_info))
             print("No Object: " + str(self.obstacle_info))
 
 
