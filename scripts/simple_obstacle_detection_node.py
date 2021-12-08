@@ -36,10 +36,12 @@ class ObstacleDetection:
         total_number_of_scans = len(data.ranges)
         scans_per_degree = int(total_number_of_scans/self.viewing_angle)
 
-        angle_values = [0, 11.5, 22.5, 33.5, 45, 56.5, 67.5, 78.5, 90, 348.5, 337.5, 326.5, 315, 303.5, 292.5, 281.5, 270]
+        angle_values = [0, 11.5, 22.5, 33.5, 45, 56.5, 67.5, 348.5, 337.5, 326.5, 315, 303.5, 292.5]
         range_values = []
         for angle in angle_values:
-            range_values.append(data.ranges[round(angle*scans_per_degree)])
+            bs = data.ranges[rount(angle*scans_per_degree)]
+            if self.max_distance_tolerance >= bs >= self.min_distance_tolerance:
+                range_values.append(data.ranges[round(angle*scans_per_degree)])
         print("Range values: " + str(range_values))
         min_distance = min(range_values)
         min_angle_index = range_values.index(min(range_values))
