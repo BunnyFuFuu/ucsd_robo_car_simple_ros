@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <launch>
-  <node name="simple_obstacle_detection_node" pkg="ucsd_robo_car_simple_ros" type="simple_obstacle_detection_node.py" />
+  <node name="simple_obstacle_detection_node" pkg="ucsd_robo_car_simple_ros" type="simple_obstacle_detection_node.py" output="screen" />
 </launch>
