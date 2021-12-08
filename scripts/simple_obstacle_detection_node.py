@@ -53,7 +53,7 @@ class ObstacleDetection:
         #rospy.loginfo("Obstacle Detected:" + str(min_distance))
         if self.max_distance_tolerance >= abs(min_distance) >= self.min_distance_tolerance:
             angle_rad = (min_angle * math.pi) / 180
-            normalized_angle = round(math.sin(angle_rad))
+            normalized_angle = math.sin(angle_rad)
             obstacle_detected = 1.0
 
             # Publish ROS message
