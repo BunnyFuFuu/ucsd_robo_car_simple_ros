@@ -36,7 +36,7 @@ class PathPlanner:
             f'\nerror_threshold: {self.error_threshold}')
 
     def det_handler(self, data):
-        self.stored_det = data.data
+        self.stored_det = [data.data[0], data.data[1], data.data[2]]
         self.last_detected = rospy.get_time()
         print("Ran the det_handler")
 
