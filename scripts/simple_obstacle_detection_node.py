@@ -44,10 +44,11 @@ class ObstacleDetection:
                 range_values.append(data.ranges[round(angle*scans_per_degree)])
             else:
                 range_values.append(float(self.max_distance_tolerance)+1)
-        print("Range values: " + str(range_values))
+        #print("Range values: " + str(range_values))
         min_distance = min(range_values)
         min_angle_index = range_values.index(min(range_values))
         min_angle = angle_values[min_angle_index]
+        print('Min Distance %s at %s degrees.' %(str(min_distance),str(min_angle)))
         obstacle_info = []
         #rospy.loginfo("Obstacle Detected:" + str(min_distance))
         if self.max_distance_tolerance >= abs(min_distance) >= self.min_distance_tolerance:
