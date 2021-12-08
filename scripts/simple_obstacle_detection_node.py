@@ -7,7 +7,7 @@ import time
 
 
 OBSTACLE_DETECTION_NODE_NAME = 'simple_obstacle_detection_node'
-SUBSCRIBER_TOPIC_NAME = '/scan'
+SUBSCRIBER_TOPIC_NAME = '/LiDAR/LD06'
 OBSTACLE_DETECTED_TOPIC_NAME = '/obstacle_detection'
 
 class ObstacleDetection:
