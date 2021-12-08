@@ -40,7 +40,7 @@ class ObstacleDetection:
         range_values = []
         for angle in angle_values:
             range_values.append(data.ranges[round(angle*scans_per_degree)])
-
+        print("Range values: " + str(range_values))
         min_distance = min(range_values)
         min_angle_index = range_values.index(min(range_values))
         min_angle = angle_values[min_angle_index]
