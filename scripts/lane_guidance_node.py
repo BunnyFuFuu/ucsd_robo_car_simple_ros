@@ -56,6 +56,7 @@ class PathPlanner:
         #stored_det[0] = distance from detected object (in meters)
         #stored_det[1] = the angle detected off the center line (positive to the left, negative to the right)
         #stored_det[2] = 1 or 0 binary, whether or not there is an obstacle detected
+        # (1 or 0) * sign(detected_angle) * [(max_angle_in_view - |detected_angle|) / (detected_angle)] * [(1-distance) / distance]
         obstacle_error = self.stored_det[2] * self.stored_det[1]/abs(self.stored_det[1]) * ( (max_angle)-abs(self.stored_det[1]) )/(max_angle) *((1-self.stored_det[0])/self.stored_det[0])
         
         #print what we're getting from the lidar
