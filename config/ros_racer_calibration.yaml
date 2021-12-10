@@ -1,9 +1,9 @@
-Hue_low : 15
-Hue_high : 53
-Saturation_low : 68
-Saturation_high : 221
-Value_low : 155
-Value_high : 231
+Hue_low : 1
+Hue_high : 28
+Saturation_low : 44
+Saturation_high : 172
+Value_low : 206
+Value_high : 255
 gray_thresh : 0
 number_of_lines : 100
 error_threshold : 0.14
@@ -15,6 +15,6 @@ camera_bottom_height : 600
 camera_left_width : 0
 camera_right_width : 800
 steering_sensitivity : 0.45
-zero_throttle : 0.098
-no_error_throttle : 0.225
-error_throttle : 0.209
+zero_throttle : 0.124
+no_error_throttle : 0.146
+error_throttle : 0.14
