@@ -50,13 +50,18 @@ class PathPlanner:
             throttle_float = self.no_error_throttle
         else:
             throttle_float = self.error_throttle
-        decay = 0.8**(rospy.get_time() - self.last_detected)
+        #decay = 0.8**(rospy.get_time() - self.last_detected) # not needed
+        # max span of vision of lidar (65 degrees --> -65 degrees)
         max_angle = 65
+        #stored_det[0] = distance from detected object (in meters)
+        #stored_det[1] = the angle detected off the center line (positive to the left, negative to the right)
+        #stored_det[2] = 1 or 0 binary, whether or not there is an obstacle detected
         obstacle_error = self.stored_det[2] * self.stored_det[1]/abs(self.stored_det[1]) * ( (max_angle)-abs(self.stored_det[1]) )/(max_angle) *((1-self.stored_det[0])/self.stored_det[0])
-        # rospy.loginfo(f'\nNOOOOO Obstacle error: {obstacle_error}')
+        
+        #print what we're getting from the lidar
         print(f'Obstacle error: {obstacle_error}')
         print("From obs det:" + str(self.stored_det))
-        #print("Obstacle error:" + str(obstacle_error))
+        
         steering_float = -float(kp * error_x) + float(kp * obstacle_error)
         if steering_float < -1.0:
             steering_float = -1.0
